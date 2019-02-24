@@ -1,11 +1,18 @@
-// @Desc This file will contain the information about the username
-// passwords (Authentication) of normal users (donators/volunteers).
+/*  
+    This file will contain the information about the username
+    passwords (Authentication) of normal users (donators/volunteers).
+*/
 
-// @Desc Require the nescessary modules  
+//Require the nescessary modules  
 const express = require('express'); 
 const router = express.Router();
-const User = require('../../models/User.js');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
+
+//Require self made modules
+const keys = require('../../config/keys.js');
+const User = require('../../models/User.js');
 
 // @Route   GET /api/user/test
 // @desc    tests user route
@@ -62,12 +69,21 @@ router.post('/login',(req,res)=>{
             if(!user){
                 return res.status(404).json({email: "User not found"})
             }
-
             //User found then check password.
             bcrypt.compare(password , user.password)
                 .then(isMatch =>{
                     if(isMatch){
-                        res.json({password:"User is allowed"});
+                        //Create Payload
+                        const payload = {name : user.name,id : user.id};
+
+                        //Sign Token
+                        jwt.sign(payload,keys.secretKey, {expiresIn: 86400}, (err,token) =>{
+                            if(err)throw err;
+                            res.json({
+                                //Using Bearer authentication
+                                token: 'Bearer ' + token,
+                            })
+                        })
                     } else{
                         return res.status(400).json({password: "Incorrect Password"});
                     }
@@ -75,7 +91,16 @@ router.post('/login',(req,res)=>{
         })
 })
 
-
+// @Route   GET /api/user/current/id
+// @desc    User Profile
+// @Access  Private
+router.get('/current',passport.authenticate('jwt',{session: false}),(req,res)=>{
+    res.json({
+        id: req.user.id,
+        name: req.user.name,
+        email: req.user.email,
+    })
+})
 
 // Exporting router so that it can be used as a router.
 module.exports = router; 
