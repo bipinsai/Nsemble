@@ -1,0 +1,1 @@
+This folder is basically to create the mongoose models so that we can store the info in the database.
