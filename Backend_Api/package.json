@@ -4,7 +4,7 @@
   "description": "Backend Api to connect with front end React App",
   "main": "server.js",
   "scripts": {
-    "client-install":"npm install --prefix ../client",
+    "client-install": "npm install --prefix ../client",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix ../client",
@@ -22,7 +22,8 @@
     "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.15",
     "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "rebass": "^3.0.1"
   },
   "devDependencies": {}
 }
