@@ -1,37 +1,17 @@
-// import withRoot from "./modules/withRoot";
-// // --- Post bootstrap -----
-// import React from "react";
-// // import ProductCategories from './modules/views/ProductCategories';
-// import ProductSmokingHero from "./modules/views/ProductSmokingHero";
-// import AppFooter from "./modules/views/AppFooter";
-// import ProductHero from "./modules/views/ProductHero";
-// // import ProductValues from './modules/views/ProductValues';
-// import ProductHowItWorks from "./modules/views/ProductHowItWorks";
-// // import ProductCTA from './modules/views/ProductCTA';
-// import AppAppBar from "./modules/views/AppAppBar";
-
-// function Index() {
-//   return (
-//     <React.Fragment>
-//       <AppAppBar />
-//       <ProductHero />
-//       <ProductHowItWorks />
-//       <ProductSmokingHero />
-//       <AppFooter />
-//     </React.Fragment>
-//   );
-// }
-
-// export default withRoot(Index);
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import React, { Component } from "react";
 import Landing from "./pages/Landing";
+import Login from "./pages/Login";
+
 class App extends Component {
   render() {
     return (
-      <div>
-        {/* <h1>Hello</h1> */}
-        <Landing />;
-      </div>
+      <Router>
+        <div className="App">
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/api/login" component={Login}/>
+        </div>
+      </Router>
     );
   }
 }

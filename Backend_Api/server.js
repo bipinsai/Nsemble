@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const users = require('./routes/api/users.js');
+const auth = require('./routes/api/auth.js');
 const profile = require('./routes/api/profile.js');
 const passport = require('passport');
 
@@ -19,7 +19,7 @@ app.use(passport.initialize());
 require('./config/passport.js')(passport);
 
 //Use Routes
-app.use('/api/user',users);
+app.use('/api/',auth);
 app.use('/api/profile',profile);
 
 
