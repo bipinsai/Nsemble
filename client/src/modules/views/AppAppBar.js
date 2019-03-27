@@ -58,7 +58,7 @@ function AppAppBar(props) {
               variant="h6"
               underline="none"
               className={classes.rightLink}
-              href="#"
+              href="/api/login"
             >
               {"Sign In"}
             </Link>
@@ -66,7 +66,7 @@ function AppAppBar(props) {
               variant="h6"
               underline="none"
               className={classNames(classes.rightLink, classes.linkSecondary)}
-              href="#"
+              href="/api/register"
             >
               {"Sign Up"}
             </Link>
