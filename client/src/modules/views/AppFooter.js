@@ -70,13 +70,13 @@ function AppFooter(props) {
               <Grid item className={classes.icons}>
                 <a href="#" className={classes.icon}>
                   <img
-                    src="https://cdn0.iconfinder.com/data/icons/typicons-2/24/social-facebook-128.png"
+                    src="https://cdn0.iconfinder.com/data/icons/typicons-2/24/social-facebook-32.png"
                     alt="f"
                   />
                 </a>
                 <a href="#" className={classes.icon}>
                   <img
-                    src="http://www.ahppi.org.uk/cms/wp-content/uploads/2015/08/black-twitter-icon.png"
+                    src="http://icons.iconarchive.com/icons/ampeross/smooth/32/Twitter-icon.png"
                     alt="t"
                   />
                 </a>
