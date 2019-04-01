@@ -8,7 +8,8 @@ import {
   Checkbox
 } from "@material-ui/core";
 import { Face, Fingerprint } from "@material-ui/icons";
-import "./PageStyles/Login.css";
+import "../PageStyles/Login.css";
+import AppAppBar from "../../modules/views/AppAppBar";
 
 const styles = theme => ({
   margin: {
@@ -24,6 +25,7 @@ class Login extends React.Component {
     const { classes } = this.props;
     return (
       <div className="container">
+        
         <div
           className={classes.margin}
           style={{
@@ -37,6 +39,9 @@ class Login extends React.Component {
             // border: "2px solid green"
           }}
         >
+          {/* <Grid> */}
+            {/* <AppAppBar /> */}
+          {/* </Grid> */}
           <Grid
             container
             spacing={10}
