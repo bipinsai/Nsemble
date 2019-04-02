@@ -8,6 +8,7 @@ import {
   Checkbox
 } from "@material-ui/core";
 import { Face, Fingerprint } from "@material-ui/icons";
+import AppAppBar from "../modules/views/AppAppBar";
 import "./PageStyles/Login.css";
 
 const styles = theme => ({
@@ -24,6 +25,7 @@ class Login extends React.Component {
     const { classes } = this.props;
     return (
       <div className="container">
+        <AppAppBar />
         <div
           className={classes.margin}
           style={{
