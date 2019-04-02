@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const auth = require('./routes/api/auth.js');
 const profile = require('./routes/api/profile.js');
 const passport = require('passport');
+const authNGO = require('./routes/api/authNGO.js');
 
 const app = express();
 
@@ -19,7 +20,8 @@ app.use(passport.initialize());
 require('./config/passport.js')(passport);
 
 //Use Routes
-app.use('/api/',auth);
+app.use('/api/user',auth);
+app.use('/api/ngo',auth);
 app.use('/api/profile',profile);
 
 

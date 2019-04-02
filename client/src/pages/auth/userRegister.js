@@ -7,9 +7,13 @@ import {
   FormControlLabel,
   Checkbox
 } from "@material-ui/core";
-import { Face, Fingerprint } from "@material-ui/icons";
-import AppAppBar from "../modules/views/AppAppBar";
-import "./PageStyles/Login.css";
+import {
+  Face,
+  Fingerprint,
+  Email,
+  EnhancedEncryption
+} from "@material-ui/icons";
+import "../PageStyles/Register.css";
 
 const styles = theme => ({
   margin: {
@@ -20,19 +24,18 @@ const styles = theme => ({
   }
 });
 
-class Login extends React.Component {
+class Register extends React.Component {
   render() {
     const { classes } = this.props;
     return (
       <div className="container">
-        <AppAppBar />
         <div
           className={classes.margin}
           style={{
             width: "50%",
             // height: "70%",
             margin: "0%",
-            paddingTop: "18%",
+            paddingTop: "12%",
             paddingBottom: "16%",
             paddingLeft: "2%",
             paddingRight: "0%"
@@ -57,11 +60,37 @@ class Login extends React.Component {
               style={{ paddingLeft: "2%", paddingRight: "2%" }}
             >
               <TextField
-                id="username"
-                label="Username"
-                type="email"
+                id="name"
+                label="Name"
+                // type="email"
                 fullWidth
                 autoFocus
+                required
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            spacing={10}
+            alignItems="center"
+            justify="center"
+            style={{ marginBottom: "10px" }}
+          >
+            <Grid item>
+              <Email />
+            </Grid>
+            <Grid
+              item
+              md={9}
+              sm={6}
+              xs={8}
+              style={{ paddingLeft: "2%", paddingRight: "2%" }}
+            >
+              <TextField
+                id="email"
+                label="Email"
+                type="email"
+                fullWidth
                 required
               />
             </Grid>
@@ -92,34 +121,40 @@ class Login extends React.Component {
               />
             </Grid>
           </Grid>
-          <Grid container alignItems="center" justify="center">
+          <Grid
+            container
+            spacing={10}
+            alignItems="center"
+            justify="center"
+            style={{ marginBottom: "10px" }}
+          >
             <Grid item>
-              <FormControlLabel
-                control={<Checkbox color="primary" />}
-                label="Remember me"
-                style={{ paddingRight: "40px" }}
+              <EnhancedEncryption />
+            </Grid>
+            <Grid
+              item
+              md={9}
+              sm={6}
+              xs={8}
+              style={{ paddingLeft: "2%", paddingRight: "2%" }}
+            >
+              <TextField
+                id="password2"
+                label="Confirm Password"
+                type="password"
+                fullWidth
+                required
               />
             </Grid>
-            <Grid item>
-              <Button
-                disableFocusRipple
-                disableRipple
-                style={{ textTransform: "none" }}
-                variant="text"
-                color="primary"
-              >
-                Forgot password ?
-              </Button>
-            </Grid>
           </Grid>
-          <Grid container justify="center" style={{ marginTop: "12px" }}>
+          <Grid container justify="center" style={{ marginTop: "5%" }}>
             <Button
-              variant="outlined"
+              variant="raised"
               size="large"
-              color="primary"
+              color="secondary"
               style={{ textTransform: "none" }}
             >
-              Login
+              Register
             </Button>
           </Grid>
         </div>
@@ -129,4 +164,4 @@ class Login extends React.Component {
   }
 }
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(Register);
