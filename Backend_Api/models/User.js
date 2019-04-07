@@ -25,6 +25,10 @@ const userSchema = new Schema({
   },
   phoneno: {
     type: String
+  },
+  donation: {
+    type: Array,
+    default: []
   }
 });
 

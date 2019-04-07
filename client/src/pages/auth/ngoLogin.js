@@ -24,7 +24,6 @@ class Login extends React.Component {
     const { classes } = this.props;
     return (
       <div className="container">
-        <AppAppBar />
         <div
           className={classes.margin}
           style={{
