@@ -1,0 +1,34 @@
+body {
+  font-family: sans-serif;
+}
+
+.carousel-item {
+  height: 65vh;
+  min-height: 350px;
+  background: no-repeat center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.carousel-control-prev {
+  background: darkgray;
+}
+.carousel-control-next {
+  background: darkgray;
+}
+
+#in {
+  padding: 0;
+  max-width: 1200px;
+}
+
+img {
+  width: 80%;
+  height: 100%;
+}
+
+.button {
+  margin-top: 2%;
+}
