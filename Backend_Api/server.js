@@ -20,9 +20,9 @@ app.use(passport.initialize());
 require('./config/passport.js')(passport);
 
 //Use Routes
-app.use('/api/user',auth);
-app.use('/api/ngo',auth);
-app.use('/api/profile',profile);
+app.use('/user',auth);
+app.use('/ngo',auth);
+app.use('/profile',profile);
 
 
 

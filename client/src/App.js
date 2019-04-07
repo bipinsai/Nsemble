@@ -12,11 +12,11 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route exact path="/" component={Landing} />
-          {/* <Route exact path="/api/user/login" component={uLogin} /> */}
-          {/* <Route exact path="/api/user/register" component={uRegister} /> */}
-          <Route exact path="/api/ngo/login" component={nLogin} />
-          {/* <Route exact path="/api/ngo/register" component={nRegister} /> */}
-          {/* <Route exact path="/api/user/:id/cart" component={DonationCart} /> */}
+          {/* <Route exact path="/user/login" component={uLogin} /> */}
+          {/* <Route exact path="/user/register" component={uRegister} /> */}
+          <Route exact path="/ngo/login" component={nLogin} />
+          <Route exact path="/ngo/register" component={nRegister} />
+          {/* <Route exact path="/user/:id/cart" component={DonationCart} /> */}
         </div>
       </Router>
     );
