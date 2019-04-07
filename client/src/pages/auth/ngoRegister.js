@@ -36,11 +36,11 @@
 //       errors : [],
 //     }
 //   }
-  
+
 //   onChange = e =>{
 //     this.setState({[e.target.id]: e.target.value});
 //   }
-  
+
 // onSubmit = e =>{
 //     e.preventDefault();
 
@@ -59,7 +59,7 @@
 //     const { classes } = this.props;
 //     return (
 //       <div className="container">
-//         <form 
+//         <form
 //           style={{
 //               width: "50%",
 //               // height: "70%",
