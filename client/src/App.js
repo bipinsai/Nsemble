@@ -4,8 +4,10 @@ import Landing from "./pages/Landing";
 import uLogin from "./pages/auth/userLogin";
 import uRegister from "./pages/auth/userRegister";
 import nLogin from "./pages/auth/ngoLogin";
-import nRegister from "./pages/auth/ngoRegister"
+import nRegister from "./pages/auth/ngoRegister";
 import DonationCart from "./pages/Donation/DonationCart";
+import DonationPage from "./pages/Donation/Donation";
+
 class App extends Component {
   render() {
     return (
