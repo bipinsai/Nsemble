@@ -9,7 +9,9 @@ class DonationPage extends React.Component {
     return (
       <div>
         <Navbar />
-        <Carousel />
+        <div class="jumbotron">
+          <Carousel />
+        </div>
         <DonationForm />
       </div>
     );

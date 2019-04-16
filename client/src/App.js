@@ -18,7 +18,7 @@ class App extends Component {
           {/* <Route exact path="/user/register" component={uRegister} /> */}
           <Route exact path="/ngo/login" component={nLogin} />
           <Route exact path="/ngo/register" component={nRegister} />
-          {/* <Route exact path="/user/:id/cart" component={DonationCart} /> */}
+          <Route exact path="/user/donate" component={DonationPage} />
         </div>
       </Router>
     );

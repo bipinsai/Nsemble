@@ -9,6 +9,9 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
+const mongoose = require("mongoose");
+
+mongoose.connect("mongodb://localhost/nsemble");
 
 //Require self made modules
 const keys = require("../../config/keys.js");
@@ -25,6 +28,7 @@ router.get("/test", (req, res) => {
 // @desc    register page
 // @Access  public
 router.post("/register", (req, res) => {
+  //   res.json(req.body);
   User.findOne({ email: req.body.email }).then(user => {
     //finding if given email already registered
     if (user) {
@@ -36,7 +40,7 @@ router.post("/register", (req, res) => {
         email: req.body.email,
         password: req.body.password
       });
-
+      //   res.json(newUser);
       //hasing the password and updating the hash in db
       bcrypt.genSalt(10, (err, salt) => {
         if (err) throw err;
@@ -49,6 +53,7 @@ router.post("/register", (req, res) => {
             })
             .catch(err => {
               console.log(err);
+              res.json(err);
             });
         });
       });

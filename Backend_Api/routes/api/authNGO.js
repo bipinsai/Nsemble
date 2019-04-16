@@ -15,7 +15,7 @@ mongoose.connect("mongodb://localhost/nsemble");
 
 //Require self made modules
 const keys = require("../../config/keys.js");
-const Ngo = require("../../models/Ngo.js");
+const NGO = require("../../models/Ngo.js");
 
 // @Route   GET /api/Ngo/test
 // @desc    tests Ngo route
@@ -28,14 +28,14 @@ router.get("/test", (req, res) => {
 // @desc    register page
 // @Access  public
 router.post("/register", (req, res) => {
-  Ngo.findOne({ email: req.body.email }).then(Ngo => {
+  NGO.findOne({ email: req.body.email }).then(Ngo => {
     //finding if given email already registered
     if (Ngo) {
       return res.status(400).json({ email: "Already Exists" });
     } else {
       //Creating new Ngo if email not already registered
-      const newNgo = new Ngo({
-        name: req.body.name,
+      const newNgo = new NGO({
+        name: req.body.username,
         email: req.body.email,
         password: req.body.password
       });
@@ -66,7 +66,7 @@ router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  Ngo.findOne({ email }).then(Ngo => {
+  NGO.findOne({ email }).then(Ngo => {
     if (!Ngo) {
       return res.status(404).json({ email: "Ngo not found" });
     }

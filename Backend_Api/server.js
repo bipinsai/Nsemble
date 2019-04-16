@@ -13,6 +13,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+let cors = require("cors");
+app.use(cors());
+
 // passport middleware
 app.use(passport.initialize());
 

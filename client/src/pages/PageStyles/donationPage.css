@@ -12,12 +12,12 @@ body {
   background-size: cover;
 }
 
-.carousel-control-prev {
+/* .carousel-control-prev {
   background: darkgray;
 }
 .carousel-control-next {
   background: darkgray;
-}
+} */
 
 #in {
   padding: 0;
@@ -31,4 +31,12 @@ img {
 
 .button {
   margin-top: 2%;
+}
+
+#break {
+  margin: 4px;
+}
+
+#jumbotron {
+  margin: 16px 32px;
 }
