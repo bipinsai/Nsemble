@@ -10,7 +10,7 @@ function formDonation() {
             <div class="col-sm-10">
               <div class="form-check form-check-inline">
                 <input
-                  class="form-check-input"
+                  class="form-check-input custom-control"
                   type="radio"
                   name="gridRadios"
                   id="gridRadios1"
@@ -23,7 +23,7 @@ function formDonation() {
               </div>
               <div class="form-check form-check-inline">
                 <input
-                  class="form-check-input"
+                  class="form-check-input custom-control"
                   type="radio"
                   name="gridRadios"
                   id="gridRadios2"
@@ -35,7 +35,7 @@ function formDonation() {
               </div>
               <div class="form-check form-check-inline">
                 <input
-                  class="form-check-input"
+                  class="form-check-input custom-control"
                   type="radio"
                   name="gridRadios"
                   id="gridRadios3"
@@ -48,13 +48,18 @@ function formDonation() {
             </div>
           </div>
         </fieldset>
+
         <div class="form-group row">
           <div class="col-sm-2">Checkbox</div>
           <div class="col-sm-10">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck1" />
-              <label class="form-check-label" for="gridCheck1">
-                Example checkbox
+            <div class="custom-control custom-checkbox mb-3">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="customCheck1"
+              />
+              <label class="custom-control-label" for="customCheck1">
+                Custom Checkbox
               </label>
             </div>
           </div>
@@ -64,7 +69,10 @@ function formDonation() {
             <label for="exampleFormControlSelect1">Example select</label>
           </div>
           <div class="col-sm-4">
-            <select class="form-control" id="exampleFormControlSelect1">
+            <select
+              class="custom-control form-control"
+              id="exampleFormControlSelect1"
+            >
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -76,10 +84,57 @@ function formDonation() {
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Example textarea</label>
           <textarea
-            class="form-control"
+            class="form-control form-group"
             id="exampleFormControlTextarea1"
             rows="3"
           />
+        </div>
+      </form>
+
+      <form>
+        <div class="form-label-group">
+          <input
+            type="email"
+            id="inputEmail"
+            class="form-control"
+            placeholder="Email address"
+            required
+            autofocus
+          />
+          <label for="inputEmail">Email address</label>
+        </div>
+
+        <div class="form-label-group">
+          <input
+            type="password"
+            id="inputPassword"
+            class="form-control"
+            placeholder="Password"
+            required
+          />
+          <label for="inputPassword">Password</label>
+        </div>
+
+        <div class="custom-control custom-checkbox mb-3">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="customCheck1"
+          />
+          <label class="custom-control-label" for="customCheck1">
+            Remember password
+          </label>
+        </div>
+        <button
+          class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+          type="submit"
+        >
+          Sign in
+        </button>
+        <div class="text-center">
+          <a class="small" href="#">
+            Forgot password?
+          </a>
         </div>
       </form>
     </div>
