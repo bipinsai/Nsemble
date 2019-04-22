@@ -1,5 +1,5 @@
 body {
-  background: #F1F3FA;
+  background: #f1f3fa;
 }
 
 /* Profile container */
@@ -104,4 +104,11 @@ body {
   padding: 20px;
   background: #fff;
   min-height: 460px;
+}
+
+.cities {
+  background-color: #c0c0c0;
+  color: black;
+  margin: 20px;
+  padding: 20px;
 }

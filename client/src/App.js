@@ -5,8 +5,9 @@ import uLogin from "./pages/auth/userLogin";
 import uRegister from "./pages/auth/userRegister";
 import nLogin from "./pages/auth/ngoLogin";
 import nRegister from "./pages/auth/ngoRegister";
-import DonationCart from "./pages/Donation/DonationCart";
-import DonationPage from "./pages/Donation/Donation";
+import DonationCart from "./pages/donation/DonationCart";
+import DonationPage from "./pages/donation/Donation";
+import UserProfile from "./pages/profile/userProfile.js";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
           <Route exact path="/ngo/login" component={nLogin} />
           <Route exact path="/ngo/register" component={nRegister} />
           <Route exact path="/user/donate" component={DonationPage} />
+          <Route exact path="/user/profile" component={UserProfile} />
         </div>
       </Router>
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import "../PageStyles/Register.css";
+import "../pageStyles/Register.css";
 import axios from "axios";
 
 class ngoRegister extends React.Component {

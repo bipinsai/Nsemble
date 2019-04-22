@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import "../PageStyles/Login.css";
+import "../pageStyles/Login.css";
 
 class Login extends React.Component {
   constructor() {
