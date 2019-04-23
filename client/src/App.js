@@ -8,6 +8,7 @@ import nRegister from "./pages/auth/ngoRegister";
 import DonationCart from "./pages/donation/DonationCart";
 import DonationPage from "./pages/donation/Donation";
 import UserProfile from "./pages/profile/userProfile.js";
+import DonationProgress from "./pages/donation/donationProgress";
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           <Route exact path="/ngo/register" component={nRegister} />
           <Route exact path="/user/donate" component={DonationPage} />
           <Route exact path="/user/profile" component={UserProfile} />
+          <Route exact path="/user/donates" component={DonationProgress} />
         </div>
       </Router>
     );

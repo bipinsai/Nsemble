@@ -65,7 +65,7 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-
+  console.log(email);
   NGO.findOne({ email }).then(Ngo => {
     if (!Ngo) {
       return res.status(404).json({ email: "Ngo not found" });
@@ -74,7 +74,7 @@ router.post("/login", (req, res) => {
     bcrypt.compare(password, Ngo.password).then(isMatch => {
       if (isMatch) {
         //Create Payload
-        const payload = { name: Ngo.name, id: Ngo.id };
+        const payload = { name: Ngo.name, id: Ngo._id };
 
         //Sign Token
         jwt.sign(
@@ -103,10 +103,17 @@ router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    res.json({
-      id: req.Ngo.id,
-      name: req.Ngo.name,
-      email: req.Ngo.email
+    console.log(req.headers);
+    let token = req.headers["x-access-token"];
+    console.log(token);
+    if (!token) {
+      return res.status(401);
+    }
+    jwt.verify(token, config.secretKey, (err, decoded) => {
+      if (err) {
+        res.json(err);
+      }
+      res.status(200).json(decoded);
     });
   }
 );
