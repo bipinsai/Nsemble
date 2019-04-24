@@ -23,13 +23,14 @@ class Login extends React.Component {
       email: this.state.email,
       password: this.state.password
     };
+    let user = this.props.match.params.name;
+    console.log(user);
+    // console.log(newUser);
 
-    console.log(newUser);
-
-    axios.post("http://localhost:5000/ngo/login", newUser).then(result => {
-      localStorage.setItem("jwtToken", result.data.token);
-      this.props.history.push("/profile/welcome");
-    });
+    // axios.post("http://localhost:5000/login/", newUser).then(result => {
+    //   localStorage.setItem("jwtToken", result.data.token);
+    //   this.props.history.push("/profile/welcome");
+    // });
   };
 
   render() {

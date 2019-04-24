@@ -23,8 +23,7 @@ app.use(passport.initialize());
 require("./config/passport.js")(passport);
 
 //Use Routes
-app.use("/user", auth);
-app.use("/ngo", authNGO);
+app.use("/", auth);
 app.use("/profile", profile);
 
 const port = process.env.PORT || 5000;

@@ -28,11 +28,15 @@ class ngoRegister extends React.Component {
       password2: this.state.password2
     };
 
-    console.log(newUser);
-
-    axios.post("http://localhost:5000/ngo/register", newUser).then(result => {
-      this.props.history.push("/ngo/login");
-    });
+    let user = this.props.match.params.name;
+    console.log(user);
+      // console.log(newUser);
+    if(user === 'user'){
+      axios.post("http://localhost:5000/register/user", newUser).then(result => {
+        console.log(result);
+        this.props.history.push("/login/user");
+      });
+    }
   };
 
   render() {
