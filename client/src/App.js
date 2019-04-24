@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import React, { Component } from "react";
 import Landing from "./pages/Landing";
-// import uLogin from "./pages/auth/userLogin";
-// import uRegister from "./pages/auth/userRegister";
 import nLogin from "./pages/auth/ngoLogin";
 import nRegister from "./pages/auth/ngoRegister";
 import DonationCart from "./pages/donation/DonationCart";
@@ -16,10 +14,10 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route exact path="/" component={Landing} />
-          <Route path="/login/:name" component={nLogin} />
-          <Route path="/register/:name" component={nRegister} />
-          <Route exact path="/profile/user/donate" component={DonationPage} />
-          <Route exact path="/profile/user" component={UserProfile} />
+          <Route path="/:name/login" component={nLogin} />
+          <Route path="/:name/register" component={nRegister} />
+          <Route exact path="/user/donate" component={DonationPage} />
+          <Route exact path="/:name/profile" component={UserProfile} />
           <Route exact path="/user/donates" component={DonationProgress} />
         </div>
       </Router>
