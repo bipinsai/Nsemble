@@ -103,17 +103,12 @@ router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log(req.headers);
-    let token = req.headers["x-access-token"];
-    console.log(token);
-    if (!token) {
-      return res.status(401);
-    }
-    jwt.verify(token, config.secretKey, (err, decoded) => {
-      if (err) {
-        res.json(err);
-      }
-      res.status(200).json(decoded);
+    let id = req.user.id;
+    // name: req.ngo.name
+    NGO.findById(id).then(ngo => {
+      res.json({
+        name: ngo.name
+      });
     });
   }
 );
