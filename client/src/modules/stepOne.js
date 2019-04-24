@@ -11,8 +11,7 @@ class DonationForm extends Component {
   obj = {};
 
   updateObj() {
-    this.obj = this.state;
-    console.log(this.obj);
+    this.obj = this.props.obj;
   }
 
   addToCart = event => {
@@ -20,8 +19,6 @@ class DonationForm extends Component {
     this.setState({ itemType: event.target[0].value }, this.updateObj);
     this.setState({ otherItems: event.target[1].value }, this.updateObj);
     this.setState({ condition: event.target[2].value }, this.updateObj);
-    console.log(event.target[2]);
-    console.log(this.state);
   };
 
   render() {

@@ -20,7 +20,7 @@ class App extends Component {
           <Route path="/register/:name" component={nRegister} />
           <Route exact path="/profile/user/donate" component={DonationPage} />
           <Route exact path="/profile/user" component={UserProfile} />
-          <Route exact path="/profile/user/donates" component={DonationProgress} />
+          <Route exact path="/user/donates" component={DonationProgress} />
         </div>
       </Router>
     );
