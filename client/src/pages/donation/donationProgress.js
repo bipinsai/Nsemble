@@ -1,15 +1,54 @@
 import React from "react";
 import Navbar from "../../modules/Navbar";
 import Stepper from "bs-stepper";
+import DonationForm from "../../modules/stepOne";
 import "../pageStyles/donationPage.css";
 import "../pageStyles/donationProgress.css";
 
 class DonationProgress extends React.Component {
+  constructor() {
+    super();
+    this.items = this.state.cart.map((item, key) => (
+      <li key={item.id}>{item.name}</li>
+    ));
+  }
+
+  state = {
+    cart: [{}]
+  };
+
+  details = {};
+  x = 0;
+  cart = [];
+
   componentDidMount() {
     this.stepper1 = new Stepper(document.querySelector("#stepper1"), {
       animation: true
     });
   }
+
+  updateObj() {
+    this.obj = this.props.obj;
+  }
+
+  addToCart = event => {
+    event.preventDefault();
+    // this.setState({ itemType: event.target[0].value }, this.updateObj);
+    // this.setState({ otherItems: event.target[1].value }, this.updateObj);
+    // this.setState({ condition: event.target[2].value }, this.updateObj);
+    this.details.num = this.x++;
+    this.details.itemType = event.target[0].value;
+    this.details.otherItems = event.target[1].value;
+    this.details.condition = event.target[2].value;
+    this.cart.push(this.details);
+    this.details = {};
+    console.log(this.cart);
+    this.setState({ cart: this.cart });
+  };
+
+  log = () => {
+    console.log(this.details);
+  };
 
   render() {
     return (
@@ -43,34 +82,42 @@ class DonationProgress extends React.Component {
               </div>
               <div className="bs-stepper-content">
                 <div id="test-l-1" className="content">
-                  <form>
+                  {/* <DonationForm obj={this.details} /> */}
+                  <form onSubmit={this.addToCart}>
                     <div class="form-group">
-                      <label for="items">What are you donating?</label>
-                      <div>
-                        <select
-                          id="items"
-                          name="items"
-                          aria-describedby="itemsHelpBlock"
-                          class="custom-select"
-                        >
-                          <option value="clothes">Clothes</option>
-                          <option value="food">Food</option>
-                          <option value="other">Other</option>
-                        </select>
-                        <span id="itemsHelpBlock" class="form-text text-muted">
-                          If other, specify
-                        </span>
-                      </div>
+                      <label>
+                        What are you donating?
+                        <div>
+                          <select
+                            id="items"
+                            name="items"
+                            aria-describedby="itemsHelpBlock"
+                            class="custom-select"
+                          >
+                            <option value="clothes">Clothes</option>
+                            <option value="food">Food</option>
+                            <option value="other">Other</option>
+                          </select>
+                          <span
+                            id="itemsHelpBlock"
+                            class="form-text text-muted"
+                          >
+                            If other, specify
+                          </span>
+                        </div>
+                      </label>
                     </div>
                     <div class="form-group">
-                      <label for="other">Other:</label>
-                      <textarea
-                        id="other"
-                        name="other"
-                        cols="40"
-                        rows="2"
-                        class="form-control"
-                      />
+                      <label>
+                        Other:
+                        <textarea
+                          id="other"
+                          name="other"
+                          cols="40"
+                          rows="2"
+                          class="form-control"
+                        />
+                      </label>
                     </div>
                     <div class="form-group">
                       <label>Condition</label>
@@ -156,7 +203,10 @@ class DonationProgress extends React.Component {
                   </button>
                 </div>
                 <div id="test-l-2" className="content">
-                  <p className="text-center">test 2</p>
+                  <p className="text-center">
+                    test 2<button onClick={this.log}>Log</button>
+                    <ul>{this.items}</ul>
+                  </p>
                   <button
                     className="btn btn-primary stepped"
                     onClick={() => this.stepper1.previous()}
