@@ -8,17 +8,15 @@ const passport = require('passport');
 require("../../config/passport")(passport);
 const User = require('../../models/User.js');
 
-// @Route   GET /api/user/test
-// @desc    tests user route
-// @Access  public
-router.get('/',passport.authenticate('jwt',{session:false}),(req,res)=>{
-    let token = getToken(req.headers);
-    if(!token){
-        res.status(403).end({logged: "Not Logged In"});
-    }
+router.get("/:name",(req,res)=>{
+    let para = req.params.name;
+    console.log("Hello\n",req.params.name);
+    res.json({name : para});
 })
 
-router.post('/donate',passport.authenticate('jwt',{session:false}),(req,res)=>{
+
+
+router.post('/user/donate',passport.authenticate('jwt',{session:false}),(req,res)=>{
     let token = getToken(req.headers);
     if(!token){
         res.status(400).end();
