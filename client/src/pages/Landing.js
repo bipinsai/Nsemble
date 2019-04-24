@@ -20,10 +20,13 @@ function Landing() {
           />
         </video>
         <div className="container h-100">
-          <div className="d-flex h-100 text-center align-items-center">
-            <div className="w-100 text-white">
-              <h1 className="display-3">Video Header</h1>
-              <p className="lead mb-0">With HTML5 Video and Bootstrap 4</p>
+          <div className="d-flex h-100 text-center align-items-center" style={{paddingTop:'-10%'}}>
+            <div className="w-100 text-white" style={{height:'60%'}}>
+              <h1 className="display-3" >Nsemble</h1>
+              <div className="container" style={{display:'flex',width:'60%',marginTop: '15%',justifyContent:'space-around'}}>
+                <a href="/ngo/register"><button className="btn btn-primary btn-lg" style={{width:'150%'}}>NGO</button></a>
+                <a href="/user/register"><button className="btn btn-success btn-lg" style={{width:'125%'}}>Donator</button></a>
+              </div>
             </div>
           </div>
         </div>

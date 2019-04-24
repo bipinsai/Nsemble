@@ -1,6 +1,7 @@
 import React from "react";
 import "../pageStyles/Register.css";
 import axios from "axios";
+import {Link} from 'react-router-dom';
 
 class ngoRegister extends React.Component {
   constructor() {
@@ -39,6 +40,14 @@ class ngoRegister extends React.Component {
     }
   };
 
+  onClick = e =>{
+    let user = this.props.match.params.name;
+    if(user === 'user'){
+      this.props.history.push("/user/login");
+    }else{
+      this.props.history.push("/ngo/login");
+    };
+  }
   render() {
     return (
       <div id="body">
@@ -114,9 +123,9 @@ class ngoRegister extends React.Component {
                     >
                       Register
                     </button>
-                    <a className="d-block text-center mt-2 small" href="#">
+                    <Link className="d-block text-center mt-2 small" to={`${(this.props.match.params.name === 'user') ?'/user/login':'/ngo/login'}`}>
                       Sign In
-                    </a>
+                    </Link>
                   </form>
                 </div>
               </div>

@@ -25,12 +25,16 @@ class Login extends React.Component {
     };
     let user = this.props.match.params.name;
     if(user==='user'){
-      axios.post("http://localhost:5000/user/login", newUser).then(result => {
-      localStorage.setItem("jwtToken", result.data.token);
-      this.props.history.push("/user/profile");
-    });
+        axios.post("http://localhost:5000/user/login", newUser).then(result => {
+        localStorage.setItem("jwtToken", result.data.token);
+        this.props.history.push("/user/profile");
+      });
+    }else{
+        axios.post("http://localhost:5000/ngo/login", newUser).then(result => {
+        localStorage.setItem("jwtToken", result.data.token);
+        this.props.history.push("/ngo/profile");
+      })
     }
-    
   };
 
   render() {

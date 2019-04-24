@@ -104,12 +104,9 @@ router.get(
     (req, res) => {
         let token = getToken(req.headers);
         if(token){
-            res.json({
-                id: req.user.id,
-                name: req.user.name,
-                email: req.user.email
-            });
+            res.json(req.user);
         }else{
+            console.log("Token not found");
             return res.status(403).send({success:false,msg:'Unauthorized'});
         }
     }
