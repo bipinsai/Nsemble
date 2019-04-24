@@ -24,13 +24,13 @@ class Login extends React.Component {
       password: this.state.password
     };
     let user = this.props.match.params.name;
-    console.log(user);
-    // console.log(newUser);
-
-    // axios.post("http://localhost:5000/login/", newUser).then(result => {
-    //   localStorage.setItem("jwtToken", result.data.token);
-    //   this.props.history.push("/profile/welcome");
-    // });
+    if(user==='user'){
+      axios.post("http://localhost:5000/user/login", newUser).then(result => {
+      localStorage.setItem("jwtToken", result.data.token);
+      this.props.history.push("/user/profile");
+    });
+    }
+    
   };
 
   render() {

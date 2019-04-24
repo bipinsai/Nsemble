@@ -2,11 +2,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const auth = require("./routes/api/auth.js");
-const profile = require("./routes/api/profile.js");
 const passport = require("passport");
-const authNGO = require("./routes/api/authNGO.js");
-
+const user = require("./routes/user.js");
+const ngo = require("./routes/ngo.js");
 const app = express();
 
 // body parser middleware
@@ -23,8 +21,8 @@ app.use(passport.initialize());
 require("./config/passport.js")(passport);
 
 //Use Routes
-app.use("/", auth);
-app.use("/profile", profile);
+app.use("/user", user);
+app.use("/ngo",ngo);
 
 const port = process.env.PORT || 5000;
 

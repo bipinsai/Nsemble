@@ -1,9 +1,25 @@
 import React from "react";
 import Navbar from "../../modules/Navbar";
 import "../pageStyles/userProfile.css";
+import axios from "axios";
+
+
 
 class UserProfile extends React.Component {
+  componentDidMount(){
+    console.log("in component did mount");
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+    axios.get("http://localhost:5000/user/profile")
+      .then((res)=>{
+        console.log(res.data);
+      })
+      .catch(err=>{
+        if(err.respone.status === 401)this.props.history.push("/user/login");
+      })
+  }
+  
   render() {
+    
     return (
       <div style={{ border: "2px solid black" }}>
         <Navbar />

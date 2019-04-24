@@ -28,7 +28,19 @@ const userSchema = new Schema({
   donation: {
     type: Array,
     default: []
-  }
+  },
+  desc: {
+    type: String
+  },
+  website: {
+    type: String,
+    default: "#"
+  },
+  logo: {
+    type: String,
+    default:
+      "https://www.pmidpi.com/wp-content/uploads/2015/07/person-placeholder.jpg"
+  },
 });
 
 module.exports = User = mongoose.model("users", userSchema);
