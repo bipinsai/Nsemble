@@ -85,15 +85,33 @@ router.post("/login", (req, res) => {
     });
 });
 
+const getToken = function (headers) {
+    if (headers && headers.authorization) {
+        let parted = headers.authorization.split(' ');
+        if (parted.length === 2) {
+            return parted[1];
+        } else {
+            return null;
+        }
+    } else {
+        return null;
+    }
+};
+
 router.get(
     "/profile",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-      res.json({
-        id: req.user.id,
-        name: req.user.name,
-        email: req.user.email
-      });
+        let token = getToken(req.headers);
+        if(token){
+            res.json({
+                id: req.user.id,
+                name: req.user.name,
+                email: req.user.email
+            });
+        }else{
+            return res.status(403).send({success:false,msg:'Unauthorized'});
+        }
     }
 );
 
