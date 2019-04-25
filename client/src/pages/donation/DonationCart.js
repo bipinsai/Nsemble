@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
+import "font-awesome/css/font-awesome.min.css";
 import NavBar from "../../modules/Navbar";
 import CartItem from "../../modules/cartItem";
+import "../pageStyles/donationCart.css";
 
 class DonationCart extends React.Component {
   constructor(props) {
@@ -65,9 +67,21 @@ class DonationCart extends React.Component {
       });
   };
 
+  donate = e => {
+    this.props.history.push("/user/donate");
+    window.location.reload();
+  };
+
   Greeting = props => {
     if (this.state.arr.length === 0) {
-      return <h1>Cart is empty</h1>;
+      return (
+        <React.Fragment>
+          <h3 style={{ textAlign: "center", marginTop: "50px" }}>
+            Your cart is empty! Please add items to donate and check back again!
+          </h3>
+          <hr />
+        </React.Fragment>
+      );
     }
     return (
       <React.Fragment>
@@ -76,15 +90,49 @@ class DonationCart extends React.Component {
             <CartItem key={index} values={tag} history={this.props.history} />
           ))}
         </ul>
-
-        <div className="col-md-4 mb-5">
-          <br />
-          <button className="btn btn-success" onClick={this.donated}>
-            DONATE!
-          </button>
-        </div>
       </React.Fragment>
     );
+  };
+
+  Checkout = e => {
+    if (this.state.arr.length === 0) {
+      return (
+        <div className="coupon col-md-5 col-sm-5 no-padding-left pull-left">
+          <div className="row">
+            <div className="col-6">
+              <button
+                type="submit"
+                className="btn btn-default pull-left"
+                onClick={this.donate}
+              >
+                <i className="fa fa-heart" aria-hidden="true" /> Donate More?
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <div className="coupon col-md-5 col-sm-5 no-padding-left pull-left">
+            <div className="row">
+              <div className="col-6">
+                <button
+                  type="submit"
+                  className="btn btn-default pull-left"
+                  onClick={this.donate}
+                >
+                  <i className="fa fa-heart" aria-hidden="true" /> Donate More?
+                </button>
+              </div>
+            </div>
+          </div>
+          <div style={{ margin: "10px" }} onClick={this.donated}>
+            <button className="btn btn-success pull-right">Checkout</button>
+          </div>
+        </React.Fragment>
+      );
+    }
   };
 
   render() {
@@ -92,7 +140,20 @@ class DonationCart extends React.Component {
       <div>
         <NavBar />
         <div>
-          <this.Greeting />
+          <div className="container">
+            <div className="card shopping-cart">
+              <div className="card-header bg-dark text-light">
+                Your Donation Cart
+                <div className="clearfix" />
+              </div>
+              <div className="card-body">
+                <this.Greeting />
+              </div>
+              <div className="card-footer">
+                <this.Checkout />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

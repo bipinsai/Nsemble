@@ -46,6 +46,11 @@ class DonationForm extends React.Component {
       });
   };
 
+  goToCart = e => {
+    this.props.history.push("/user/cart");
+    window.location.reload();
+  };
+
   render() {
     return (
       <div class="container button">
@@ -71,7 +76,7 @@ class DonationForm extends React.Component {
           </div>
           <div class="form-group">
             <label>
-              Other:
+              Details:
               <textarea
                 id="otherItems"
                 name="other"
@@ -94,6 +99,7 @@ class DonationForm extends React.Component {
                     aria-describedby="conditionHelpBlock"
                     class="custom-control-input"
                     value="new"
+                    required
                   />
                   <label for="condition_0" class="custom-control-label">
                     Newly Bought
@@ -135,9 +141,17 @@ class DonationForm extends React.Component {
               </span>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group col-sm-6">
             <button name="submit" type="submit" class="btn btn-primary">
               Add to cart
+            </button>
+            <button
+              name="submit"
+              type="submit"
+              class="btn btn-primary pull-right"
+              onClick={this.goToCart}
+            >
+              Go to Cart
             </button>
           </div>
         </form>
