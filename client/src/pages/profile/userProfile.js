@@ -9,7 +9,8 @@ class UserProfile extends React.Component {
     super();
 
     this.state = {
-      username: ""
+      username: "",
+      donation:[]
     };
   }
 
@@ -25,6 +26,7 @@ class UserProfile extends React.Component {
       .then((res)=>{
         console.log(res.data);
         this.setState({username : res.data.name});
+        this.setState({donation : res.data.donation})
       })
       .catch(err=>{
         console.log(err.response.status);
@@ -34,13 +36,13 @@ class UserProfile extends React.Component {
 
   render() {
     return (
-      <div style={{ border: "2px solid black" }}>
+      <div>
         <Navbar />
         <div class="container">
           <div class="row profile">
             <div class="col-md-4">
               <div class="profile-sidebar">
-                <div class="profile-userpic">
+                <div class="profile-userpic" style={{display:'flex',justifyContent:'space-around'}}>
                   <img
                     src="https://static.change.org/profile-img/default-user-profile.svg"
                     class="img-responsive"
@@ -48,11 +50,16 @@ class UserProfile extends React.Component {
                   />
                 </div>
                 <div class="profile-usertitle">
-                  <div class="profile-usertitle-name">{this.state.username}</div>
+                  <div class="profile-usertitle-name" style={{color:'black'}}><h3>{this.state.username}</h3></div>
                 </div>
-                <div class="profile-userbuttons">
+                <div class="profile-userbuttons" style={{marginTop:'5%'}}>
+                  <Link to='/user/update'>
+                    <button type="button" class="btn btn-success btn-sm" style={{marginRight:'5%',fontSize:'14px'}}>
+                      Update
+                    </button>
+                  </Link>
                   <Link to='/user/welcome'>
-                    <button type="button" class="btn btn-danger btn-sm">
+                    <button type="button" class="btn btn-danger btn-sm" style={{fontSize:'14px'}}>
                       Donate
                     </button>
                   </Link>
@@ -75,46 +82,23 @@ class UserProfile extends React.Component {
                 </div>
               </div>
             </div>
-            <div id="message">
-              <div class="col-md-9">
+            <div id="message" style={{width:'60%'}}>
+              <div class="col-md-12">
                 <div class="profile-content">
                   <div class="cities" id="bon">
                     <h3> Bio: </h3>
                     <p>I am a </p>
                   </div>
-                  <div class="cities" id="don">
-                    <h3> Donation 1:</h3>
-                    <p>
-                      <h6>NGO: Child and Social Welfare Association</h6>
-                      <h6>Donated: </h6>
-                      <ul>
-                        <li>1Kg Rice</li>
-                        <li>2 T-shirts</li>
-                      </ul>
-                    </p>
-                  </div>
-                  <div class="cities">
-                    <h3> Donation 2:</h3>
-                    <p>
-                      <h6>NGO: Indian Rural Medical Association</h6>
-                      <h6>Donated: </h6>
-                      <ul>
-                        <li>4 Shorts</li>
-                        <li>3 bedsheets</li>
-                      </ul>
-                    </p>
-                  </div>
-                  <div class="cities">
-                    <h3> Donation 3:</h3>
-                    <p>
-                      <h6>NGO: Humanity Association</h6>
-                      <h6>Donated: </h6>
-                      <ul>
-                        <li>3 Toothpastes</li>
-                        <li>6 Towels</li>
-                      </ul>
-                    </p>
-                  </div>
+                  {this.state.donation.map((donation,index)=>{
+                    return(
+                      <div class="cities" id="don">
+                          <h4> Donation {index+1}:</h4>
+                            <b><h6>{donation.itemType.toUpperCase()}</h6></b>
+                            <h6>{donation.otherItems}</h6>
+                            <h6>Condition : {donation.condition}</h6>
+                        </div>
+                      )
+                    })}
                 </div>
               </div>
             </div>
