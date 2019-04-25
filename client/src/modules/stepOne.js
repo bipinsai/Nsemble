@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { isUndefined } from "util";
+// import { isUndefined } from "util";
 
 class DonationForm extends Component {
   state = {
@@ -22,9 +22,7 @@ class DonationForm extends Component {
   };
 
   render() {
-    return (
-      <div></div>
-    );
+    return <div />;
   }
 }
 

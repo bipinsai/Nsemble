@@ -1,19 +1,32 @@
 import React from "react";
 import axios from "axios";
 import "./pageStyles/welcome.css";
+import {Link} from "react-router-dom";
 
 class Welcome extends React.Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
-      errors: []
+      ngo:[],
     };
   }
 
   componentDidMount(){
-      
+        /**  Get JWT token for verfication */ 
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+
+        /** Perform a get request to get the required data */
+        /** Set state values as required */
+        // localStorage.removeItem("jwtToken");
+        axios.get("http://localhost:5000/user/welcome")
+            .then((res)=>{
+            console.log("hello\n",res.data);
+            this.setState({ngo : res.data});
+        })
+            .catch(err=>{
+            console.log(err.response.status);
+            if(err.response.status === 401)this.props.history.push("/user/login");
+      })
   }
 
   render() {
@@ -25,7 +38,7 @@ class Welcome extends React.Component {
                 <div className="col-lg-3">
                     <h1 className="my-4"> Donate </h1>
                     <div className="list-group">
-                        <a href="#" className="list-group-item">Go to Donation Page</a>
+                        <a href="/user/donates" className="list-group-item">Go to Donation Page</a>
                     </div>
                 </div>
 
@@ -59,108 +72,27 @@ class Welcome extends React.Component {
                     </div>
 
                     <div className="row">
-
-                        <div className="col-lg-4 col-md-6 mb-4">
-                            <div className="card h-100">
-                            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                            <div className="card-body">
-                                <h4 className="card-title">
-                                <a href="#">NGO 1</a>
-                                </h4>
-                                <p className="card-text">Click To View the Profile </p>
-                            </div>
-                            <div className="card-footer">
-                                <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                            </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6 mb-4">
-                            <div className="card h-100">
-                            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                            <div className="card-body">
-                                <h4 className="card-title">
-                                <a href="#">NGO 2</a>
-                                </h4>
-                            
-                                <p className="card-text">Click To View the Profile</p>
-                            </div>
-                            <div className="card-footer">
-                                <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                            </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6 mb-4">
-                            <div className="card h-100">
-                            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                            <div className="card-body">
-                                <h4 className="card-title">
-                                <a href="#">NGO 3</a>
-                                </h4>
-                            
-                                <p className="card-text">Click To View the Profile</p>
-                            </div>
-                            <div className="card-footer">
-                                <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                            </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6 mb-4">
-                            <div className="card h-100">
-                            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                            <div className="card-body">
-                                <h4 className="card-title">
-                                <a href="#">NGO 4</a>
-                                </h4>
-                            
-                                <p className="card-text">Click To View the Profile</p>
-                            </div>
-                            <div className="card-footer">
-                                <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                            </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6 mb-4">
-                            <div className="card h-100">
-                            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                            <div className="card-body">
-                                <h4 className="card-title">
-                                <a href="#">NGO 6</a>
-                                </h4>
-                            
-                                <p className="card-text">Click To View the Profile</p>
-                            </div>
-                            <div className="card-footer">
-                                <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                            </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6 mb-4">
-                            <div className="card h-100">
-                            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                            <div className="card-body">
-                                <h4 className="card-title">
-                                <a href="#">NGO 6</a>
-                                </h4>
-                            
-                                <p className="card-text">Click To View the Profile</p>
-                            </div>
-                            <div className="card-footer">
-                                <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                            </div>
-                            </div>
-                        </div>
-
+                        {this.state.ngo.map(ngo=>{
+                            return (
+                                <div className="col-lg-4 col-md-6 mb-4">
+                                <div className="card h-100">
+                                <img className="card-img-top" src={`${ngo.logo}`} alt="" />
+                                <div className="card-body">
+                                    <h4 className="card-title">
+                                    <Link to={`'/ngo/profile/'${ngo._id}`}>{ngo.name}</Link>
+                                    </h4>
+                                    {/* <p className="card-text">Click To View the Profile </p> */}
+                                </div>
+                                <div className="card-footer">
+                                    <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                </div>
+                                </div>
+                                </div>
+                            )
+                        })}
                     </div>
-        
                 </div>
-    
             </div>
-
         </div>
         // <!-- /.container -->
     );

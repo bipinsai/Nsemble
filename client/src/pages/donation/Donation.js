@@ -12,7 +12,7 @@ class DonationPage extends React.Component {
         <div class="jumbotron">
           <Carousel />
         </div>
-        <DonationForm />
+        <DonationForm history={this.props.history} />
       </div>
     );
   }

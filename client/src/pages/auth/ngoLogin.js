@@ -98,7 +98,7 @@ class Login extends React.Component {
                         Sign in
                       </button>
                       <div className="text-center">
-                        <a className="small" href="#">
+                        <a className="small" href="/user/forgot">
                           Forgot password?
                         </a>
                       </div>

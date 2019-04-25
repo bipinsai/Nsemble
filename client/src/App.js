@@ -21,6 +21,7 @@ class App extends Component {
           <Route exact path="/:name/profile" component={UserProfile} />
           <Route exact path="/user/donates" component={DonationProgress} />
           <Route exact path="/user/welcome" component={Welcome} />
+          <Route exact path="/user/cart" component={DonationCart} />
         </div>
       </Router>
     );
