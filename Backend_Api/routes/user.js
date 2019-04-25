@@ -222,31 +222,59 @@ router.get(
 );
 
 /** ONLY USE WHEN NEED TO INSERT MOCK DATA */
-/* var fs = require("fs");
-var data = fs.readFileSync("MOCkUSER.json", "utf-8");
-var words = JSON.parse(data);
-for (let i = 0; i < words.length; i++) {
-  const newUser = new User({
-    name: words[i].name,
-    email: words[i].email,
-    password: words[i].password
-    // isNgo: true
-  });
-  bcrypt.genSalt(10, (err, salt) => {
-    if (err) throw err;
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-      newUser.password = hash;
-      newUser
-        .save()
-        .then(user => {
-          console.log(i, " ", user);
-        })
-        .catch(err => {
-          console.log(err);
-          // res.json(err);
-        });
-    });
-  }); 
-}*/
+//  var fs = require("fs");
+// var data = fs.readFileSync("MOCK_NGO.json", "utf-8");
+// var words = JSON.parse(data);
+// for (let i = 0; i < words.length; i++) {
+  // if(i%13===4){
+  //   const newUser = new User({
+  //     name: words[i].name,
+  //     email: words[i].email,
+  //     password: words[i].password,
+  //     // isNgo: true
+  //     logo: words[i].logo,
+  //     isNsembler: true
+  //   });
+  //   bcrypt.genSalt(10, (err, salt) => {
+  //     if (err) throw err;
+  //     bcrypt.hash(newUser.password, salt, (err, hash) => {
+  //       newUser.password = hash;
+  //       newUser
+  //         .save()
+  //         .then(user => {
+  //           console.log(i, " ", user);
+  //         })
+  //         .catch(err => {
+  //           console.log(err);
+  //           // res.json(err);
+  //         });
+  //     });
+  //   });
+  // }else
+//   {
+//     const newUser = new User({
+//       name: words[i].name,
+//       email: words[i].email,
+//       password: words[i].password,
+//       logo: words[i].logo,
+//       isNgo: true
+//     });
+//     bcrypt.genSalt(10, (err, salt) => {
+//       if (err) throw err;
+//       bcrypt.hash(newUser.password, salt, (err, hash) => {
+//         newUser.password = hash;
+//         newUser
+//           .save()
+//           .then(user => {
+//             console.log(i, " ", user);
+//           })
+//           .catch(err => {
+//             console.log(err);
+//             // res.json(err);
+//           });
+//       });
+//     });
+//   } 
+// }
 
 module.exports = router;

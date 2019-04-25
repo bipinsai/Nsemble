@@ -44,6 +44,10 @@ const userSchema = new Schema({
   isNgo: {
     type: Boolean,
     default: false
+  },
+  isNsembler:{
+    type: Boolean,
+    default: false
   }
 });
 
