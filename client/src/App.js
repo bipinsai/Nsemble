@@ -7,7 +7,7 @@ import DonationCart from "./pages/donation/DonationCart";
 import DonationPage from "./pages/donation/Donation";
 import UserProfile from "./pages/profile/userProfile.js";
 import ngoProfile from "./pages/profile/ngoProfile.js";
-import Welcome from "./pages/Welcome.js";
+import Dashboard from "./pages/admin/dashboard.js";
 
 class App extends Component {
   render() {
@@ -21,7 +21,7 @@ class App extends Component {
           <Route exact path="/user/profile" component={UserProfile} />
           <Route exact path="/ngo/profile/:id" component={ngoProfile} />
           <Route exact path="/user/donates" component={DonationPage} />
-          <Route exact path="/user/welcome" component={Welcome} />
+          <Route exact path="/admin/dashboard" component={Dashboard} />
           <Route exact path="/user/cart" component={DonationCart} />
         </div>
       </Router>

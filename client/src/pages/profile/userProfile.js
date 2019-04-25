@@ -58,7 +58,7 @@ class UserProfile extends React.Component {
                       Update
                     </button>
                   </Link>
-                  <Link to='/user/welcome'>
+                  <Link to='/user/donate'>
                     <button type="button" class="btn btn-danger btn-sm" style={{fontSize:'14px'}}>
                       Donate
                     </button>
