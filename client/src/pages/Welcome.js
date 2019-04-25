@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import "./pageStyles/welcome.css";
 import {Link} from "react-router-dom";
 
 class Welcome extends React.Component {
@@ -18,7 +17,7 @@ class Welcome extends React.Component {
         /** Perform a get request to get the required data */
         /** Set state values as required */
         // localStorage.removeItem("jwtToken");
-        axios.get("http://localhost:5000/user/welcome")
+        axios.get("http://172.16.48.86:5000/user/welcome")
             .then((res)=>{
             console.log("hello\n",res.data);
             this.setState({ngo : res.data});
@@ -79,7 +78,7 @@ class Welcome extends React.Component {
                                 <img className="card-img-top" src={`${ngo.logo}`} alt="" />
                                 <div className="card-body">
                                     <h4 className="card-title">
-                                    <Link to={`'/ngo/profile/'${ngo._id}`}>{ngo.name}</Link>
+                                    <Link to={`/ngo/profile/${ngo._id}`}>{ngo.name}</Link>
                                     </h4>
                                     {/* <p className="card-text">Click To View the Profile </p> */}
                                 </div>

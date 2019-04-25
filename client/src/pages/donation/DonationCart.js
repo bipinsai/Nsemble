@@ -38,7 +38,7 @@ class DonationCart extends React.Component {
     axios.defaults.headers.common["Authorization"] = localStorage.getItem(
       "jwtToken"
     );
-    axios.get("http://localhost:5000/user/cart").then(res => {
+    axios.get("http://172.16.48.86:5000/user/cart").then(res => {
       console.log("Working successfully");
       const carts = res.data.cart;
       this.setState({ cart: carts }, this.log);

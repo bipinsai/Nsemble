@@ -33,12 +33,12 @@ class ngoRegister extends React.Component {
     console.log(user);
       // console.log(newUser);
     if(user === 'user'){
-      axios.post("http://localhost:5000/user/register", newUser).then(result => {
+      axios.post("http://172.16.48.86:5000/user/register", newUser).then(result => {
         console.log(result);
         this.props.history.push("/user/login");
       });
     }else{
-      axios.post("http://localhost:5000/ngo/register", newUser).then(result => {
+      axios.post("http://172.16.48.86:5000/ngo/register", newUser).then(result => {
         console.log(result);
         this.props.history.push("/ngo/login");
       });

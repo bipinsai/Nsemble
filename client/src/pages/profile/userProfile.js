@@ -24,7 +24,7 @@ class UserProfile extends React.Component {
     /** Set state values as required */
     
     if(this.props.match.params.name === 'user'){  
-      axios.get("http://localhost:5000/user/profile")
+      axios.get("http://172.16.48.86:5000/user/profile")
       .then((res)=>{
         console.log(res.data);
         this.setState({username : res.data.name});
@@ -34,7 +34,7 @@ class UserProfile extends React.Component {
         if(err.response.status === 401)this.props.history.push("/user/login");
       })
     }else{
-      axios.get("http://localhost:5000/ngo/profile")
+      axios.get("http://172.16.48.86:5000/ngo/profile")
       .then((res)=>{
         console.log(res.data);
         this.setState({username : res.data.name});
