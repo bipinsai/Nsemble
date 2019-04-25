@@ -22,9 +22,7 @@ class DonationForm extends Component {
   };
 
   render() {
-    return (
-      
-    );
+    return <h1 />;
   }
 }
 

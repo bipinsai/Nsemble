@@ -1,144 +1,149 @@
 import React from "react";
+import axios from "axios";
 
-function formDonation() {
-  return (
-    <div class="container button">
-      <form>
-        <fieldset class="form-group">
-          <div class="row">
-            <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-            <div class="col-sm-10">
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input custom-control"
-                  type="radio"
-                  name="gridRadios"
-                  id="gridRadios1"
-                  value="option1"
-                  checked
-                />
-                <label class="form-check-label" for="gridRadios1">
-                  First radio
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input custom-control"
-                  type="radio"
-                  name="gridRadios"
-                  id="gridRadios2"
-                  value="option2"
-                />
-                <label class="form-check-label" for="gridRadios2">
-                  Second radio
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input custom-control"
-                  type="radio"
-                  name="gridRadios"
-                  id="gridRadios3"
-                  value="option3"
-                />
-                <label class="form-check-label" for="gridRadios3">
-                  Third radio
-                </label>
-              </div>
+class DonationForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      itemType: "clothes",
+      otherItems: "",
+      condition: "0"
+    };
+  }
+
+  updateObj = () => {
+    this.obj = this.props.obj;
+  };
+
+  setRadio = event => {
+    this.setState({ condition: event.target.value });
+  };
+
+  setItemType = event => {
+    this.setState({ itemType: event.target.value });
+  };
+
+  setOtherItems = event => {
+    this.setState({ otherItems: event.target.value });
+  };
+
+  addToCart = event => {
+    event.preventDefault();
+
+    // console.log(this.state);
+
+    const newDonation = this.state;
+
+    axios
+      .post("http://localhost:5000/user/donate", newDonation)
+      .then(res => {
+        console.log("\n\n\nhellooo", res.data, "\n\n\n");
+        if (res.data.status === 200) this.props.history.push("/user/cart");
+      })
+      .catch(err => {
+        if (err) throw err;
+        window.location.reload();
+      });
+  };
+
+  render() {
+    return (
+      <div class="container button">
+        <form onSubmit={this.addToCart}>
+          <div class="form-group">
+            <label>What are you donating?</label>
+            <div>
+              <select
+                id="items"
+                name="itemType"
+                aria-describedby="itemsHelpBlock"
+                class="custom-select"
+                onChange={this.setItemType}
+              >
+                <option value="clothes">Clothes</option>
+                <option value="food">Food</option>
+                <option value="other">Other</option>
+              </select>
+              <span id="itemsHelpBlock" class="form-text text-muted">
+                If other, specify
+              </span>
             </div>
           </div>
-        </fieldset>
-
-        <div class="form-group row">
-          <div class="col-sm-2">Checkbox</div>
-          <div class="col-sm-10">
-            <div class="custom-control custom-checkbox mb-3">
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="customCheck1"
+          <div class="form-group">
+            <label>
+              Other:
+              <textarea
+                id="otherItems"
+                name="other"
+                cols="40"
+                rows="2"
+                class="form-control"
+                onChange={this.setOtherItems}
               />
-              <label class="custom-control-label" for="customCheck1">
-                Custom Checkbox
-              </label>
+            </label>
+          </div>
+          <div class="form-group">
+            <label>Condition</label>
+            <div onChange={this.setRadio.bind(this)}>
+              <div class="custom-controls-stacked">
+                <div class="custom-control custom-radio">
+                  <input
+                    name="condition"
+                    id="condition_0"
+                    type="radio"
+                    aria-describedby="conditionHelpBlock"
+                    class="custom-control-input"
+                    value="new"
+                  />
+                  <label for="condition_0" class="custom-control-label">
+                    Newly Bought
+                  </label>
+                </div>
+              </div>
+              <div class="custom-controls-stacked">
+                <div class="custom-control custom-radio">
+                  <input
+                    name="condition"
+                    id="condition_1"
+                    type="radio"
+                    aria-describedby="conditionHelpBlock"
+                    class="custom-control-input"
+                    value="used"
+                  />
+                  <label for="condition_1" class="custom-control-label">
+                    Used
+                  </label>
+                </div>
+              </div>
+              <div class="custom-controls-stacked">
+                <div class="custom-control custom-radio">
+                  <input
+                    name="condition"
+                    id="condition_2"
+                    type="radio"
+                    aria-describedby="conditionHelpBlock"
+                    class="custom-control-input"
+                    value="old"
+                  />
+                  <label for="condition_2" class="custom-control-label">
+                    Old
+                  </label>
+                </div>
+              </div>
+              <span id="conditionHelpBlock" class="form-text text-muted">
+                What is the condition of your items?
+              </span>
             </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-2">
-            <label for="exampleFormControlSelect1">Example select</label>
+          <div class="form-group">
+            <button name="submit" type="submit" class="btn btn-primary">
+              Add to cart
+            </button>
           </div>
-          <div class="col-sm-4">
-            <select
-              class="custom-control form-control"
-              id="exampleFormControlSelect1"
-            >
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Example textarea</label>
-          <textarea
-            class="form-control form-group"
-            id="exampleFormControlTextarea1"
-            rows="3"
-          />
-        </div>
-      </form>
-
-      <form>
-        <div class="form-label-group">
-          <input
-            type="email"
-            id="inputEmail"
-            class="form-control"
-            placeholder="Email address"
-            required
-            autofocus
-          />
-          <label for="inputEmail">Email address</label>
-        </div>
-
-        <div class="form-label-group">
-          <input
-            type="password"
-            id="inputPassword"
-            class="form-control"
-            placeholder="Password"
-            required
-          />
-          <label for="inputPassword">Password</label>
-        </div>
-
-        <div class="custom-control custom-checkbox mb-3">
-          <input
-            type="checkbox"
-            class="custom-control-input"
-            id="customCheck1"
-          />
-          <label class="custom-control-label" for="customCheck1">
-            Remember password
-          </label>
-        </div>
-        <button
-          class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-          type="submit"
-        >
-          Sign in
-        </button>
-        <div class="text-center">
-          <a class="small" href="#">
-            Forgot password?
-          </a>
-        </div>
-      </form>
-    </div>
-  );
+        </form>
+      </div>
+    );
+  }
 }
 
-export default formDonation;
+export default DonationForm;
