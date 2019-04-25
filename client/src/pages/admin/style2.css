@@ -1,0 +1,36 @@
+.bg-mattBlackLight {
+	 background-color: #303337;
+}
+ .text-mattBlackLight {
+	 color: #303337;
+}
+ .bg-mattBlackDark, body {
+	 background-color: #212121;
+}
+ .text-mattBlackDark {
+	 color: #212121;
+}
+ .bg-mattGray {
+	 background-color: #878d8d;
+}
+ .text-mattGray, body {
+	 color: #878d8d;
+}
+ .bg-mattRed {
+	 background-color: #ec6271;
+}
+ .text-mattRed {
+	 color: #ec6271;
+}
+ .wrapper {
+	 margin-top: 3.5rem;
+}
+ .wrapper .sideMenu {
+	 position: fixed;
+	 top: 0;
+	 bottom: 0;
+	 left: 0;
+	 margin: 3.5rem auto auto;
+	 width: 12.5rem;
+	 border: 1px solid red;
+}

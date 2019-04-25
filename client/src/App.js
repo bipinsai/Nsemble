@@ -8,6 +8,7 @@ import DonationPage from "./pages/donation/Donation";
 import UserProfile from "./pages/profile/userProfile.js";
 import ngoProfile from "./pages/profile/ngoProfile.js";
 import Welcome from "./pages/Welcome.js";
+import Dashboard from "./pages/admin/Dashboard.js";
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
           <Route exact path="/user/donates" component={DonationPage} />
           <Route exact path="/user/welcome" component={Welcome} />
           <Route exact path="/user/cart" component={DonationCart} />
+          <Route exact path="/admin/dashboard" component={Dashboard} />
         </div>
       </Router>
     );
