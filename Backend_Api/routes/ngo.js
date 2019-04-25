@@ -21,21 +21,22 @@ router.post("/register", (req, res) => {
         return res.status(400).json({ email: "Already Exists" });
     } else {
         //Creating new user if email not already registered
-        const newUser = new User({
+        const newNgo = new User({
         name: req.body.username,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        isNgo: true
         });
-        res.json(newUser);
+        res.json(newNgo);
         // hasing the password and updating the hash in db
         bcrypt.genSalt(10, (err, salt) => {
         if (err) throw err;
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-            newUser.password = hash;
-            newUser
+        bcrypt.hash(newNgo.password, salt, (err, hash) => {
+            newNgo.password = hash;
+            newNgo
             .save()
-            .then(user => {
-                res.json(user);
+            .then(ngo => {
+                res.json(ngo);
             })
             .catch(err => {
                 console.log(err);

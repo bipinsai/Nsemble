@@ -41,6 +41,10 @@ const userSchema = new Schema({
     default:
       "https://www.pmidpi.com/wp-content/uploads/2015/07/person-placeholder.jpg"
   },
+  isNgo: {
+    type: Boolean,
+    default: false
+  }
 });
 
 module.exports = User = mongoose.model("users", userSchema);

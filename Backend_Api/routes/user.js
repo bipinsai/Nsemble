@@ -112,4 +112,49 @@ router.get(
     }
 );
 
+router.get(
+    "/welcome",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        let token = getToken(req.headers);
+        if(token){
+            User.find({isNgo : true})
+                .then(result=>{
+                    res.json(result);
+                })
+        }else{
+            console.log("Token not found");
+            return res.status(403).send({success:false,msg:'Unauthorized'});
+        }
+    }
+);
+
+/** ONLY USE WHEN NEED TO INSERT MOCK DATA */
+// var fs = require("fs");
+// var data = fs.readFileSync('MOCkUSER.json','utf-8');
+// var words = JSON.parse(data);
+// for(let i=0;i<words.length;i++){
+//     const newUser = new User({
+//         name: words[i].name,
+//         email: words[i].email,
+//         password: words[i].password,
+//         // isNgo: true
+//     });
+//     bcrypt.genSalt(10, (err, salt) => {
+//         if (err) throw err;
+//         bcrypt.hash(newUser.password, salt, (err, hash) => {
+//             newUser.password = hash;
+//             newUser
+//             .save()
+//             .then(user => {
+//                 console.log(i," " ,user);
+//             })
+//             .catch(err => {
+//                 console.log(err);
+//                 // res.json(err);
+//             });
+//         });
+//     });
+// }
+
 module.exports = router;
