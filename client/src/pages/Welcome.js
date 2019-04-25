@@ -116,7 +116,7 @@ class Welcome extends React.Component {
               </a>
             </div>
 
-                <div className="col-lg-9">
+                <div className="col-lg-8">
 
                     <div id="carouselExampleIndicators" className="carousel slide my-4" data-ride="carousel">
                         <ol className="carousel-indicators">
@@ -145,16 +145,16 @@ class Welcome extends React.Component {
                         </a>
                     </div>
 
-                    <div className="row">
+                    <div className="row" style={{width:'150%',border:'2px solid blue'}}>
                         {this.state.ngo.map(ngo=>{
                             return (
-                                <div className="col-lg-4 col-md-6 mb-4">
-                                <div className="card h-100">
+                                <div className="col-lg-4 col-md-6 mb-4" style={{marginRight:'0%'}}>
+                                <div className="card" style={{height:'50%',width:'50%',marginBottom:'0%'}}>
                                 <img className="card-img-top" src={`${ngo.logo}`} alt="" />
                                 <div className="card-body">
-                                    <h4 className="card-title">
+                                    <b><p className="card-title">
                                     <Link to={`/ngo/profile/${ngo._id}`}>{ngo.name}</Link>
-                                    </h4>
+                                    </p></b>
                                     {/* <p className="card-text">Click To View the Profile </p> */}
                                 </div>
                                 <div className="card-footer">
