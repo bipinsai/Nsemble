@@ -71,7 +71,7 @@ router.post("/login", (req, res) => {
           { expiresIn: 3600 },
           (err, token) => {
             if (err) throw err;
-            console.log("Sending token");
+            // console.log("Sending token");
             res.json({
               //Using Bearer authentication
               success: true,
@@ -87,7 +87,7 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/donate", (req, res) => {
-  console.log("In Post");
+  // console.log("In Post");
   const itemType = req.body.itemType,
     otherItems = req.body.otherItems,
     condition = req.body.condition;
@@ -107,7 +107,7 @@ router.post("/donate", (req, res) => {
   newDonation
     .save()
     .then(result => {
-      console.log("Hello \n", result);
+      // console.log("Hello \n", result);
       res.json({ success: true, status: 200, id: result._id });
     })
     .catch(err => {
@@ -133,13 +133,49 @@ router.get(
 );
 
 router.delete("/cart", (req, res) => {
-  console.log("this is the req\n", req);
+  // console.log("this is the req\n", req);
   Cart.findByIdAndDelete({ _id: req.body._id }, (err, cargo) => {
     if (err) res.json({ success: false, status: 500 });
     console.log("successfully deleted the cargo\n", cargo);
     res.json({ success: true, status: 200 });
   });
 });
+
+router.post(
+  "/donated",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findById(req.user._id)
+      .then(model => {
+        req.body.arr.forEach(elem => {
+          model.donation.push(elem);
+        });
+
+        return model;
+      })
+      .then(model => {
+        return model.save();
+      })
+      .then(updatedModel => {
+        console.log("\nmodel updated", updatedModel);
+        req.body.arr.forEach(element => {
+          console.log(element._id);
+          Cart.findByIdAndDelete({ _id: element._id }, (err, cargo) => {
+            if (err) throw err;
+            console.log("\ndeleted\n", cargo._id);
+          });
+        });
+        res.json({
+          msg: "model updated",
+          status: 200,
+          updatedModel
+        });
+      })
+      .catch(err => {
+        res.send(err);
+      });
+  }
+);
 
 const getToken = function(headers) {
   if (headers && headers.authorization) {
@@ -155,62 +191,62 @@ const getToken = function(headers) {
 };
 
 router.get(
-    "/profile",
-    passport.authenticate("jwt", { session: false }),
-    (req, res) => {
-        let token = getToken(req.headers);
-        if(token){
-            res.json(req.user);
-        }else{
-            console.log("Token not found");
-            return res.status(403).send({success:false,msg:'Unauthorized'});
-        }
+  "/profile",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    let token = getToken(req.headers);
+    if (token) {
+      res.json(req.user);
+    } else {
+      console.log("Token not found");
+      return res.status(403).send({ success: false, msg: "Unauthorized" });
     }
+  }
 );
 
 router.get(
-    "/welcome",
-    passport.authenticate("jwt", { session: false }),
-    (req, res) => {
-        let token = getToken(req.headers);
-        if(token){
-            User.find({isNgo : true})
-                .then(result=>{
-                    res.json(result);
-                })
-        }else{
-            console.log("Token not found");
-            return res.status(403).send({success:false,msg:'Unauthorized'});
-        }
+  "/welcome",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    let token = getToken(req.headers);
+    if (token) {
+      // console.log(req.user);
+      User.find({ isNgo: true }).then(result => {
+        res.json(result);
+      });
+    } else {
+      console.log("Token not found");
+      return res.status(403).send({ success: false, msg: "Unauthorized" });
     }
+  }
 );
 
 /** ONLY USE WHEN NEED TO INSERT MOCK DATA */
-// var fs = require("fs");
-// var data = fs.readFileSync('MOCkUSER.json','utf-8');
-// var words = JSON.parse(data);
-// for(let i=0;i<words.length;i++){
-//     const newUser = new User({
-//         name: words[i].name,
-//         email: words[i].email,
-//         password: words[i].password,
-//         // isNgo: true
-//     });
-//     bcrypt.genSalt(10, (err, salt) => {
-//         if (err) throw err;
-//         bcrypt.hash(newUser.password, salt, (err, hash) => {
-//             newUser.password = hash;
-//             newUser
-//             .save()
-//             .then(user => {
-//                 console.log(i," " ,user);
-//             })
-//             .catch(err => {
-//                 console.log(err);
-//                 // res.json(err);
-//             });
-//         });
-//     });
-// }
+/* var fs = require("fs");
+var data = fs.readFileSync("MOCkUSER.json", "utf-8");
+var words = JSON.parse(data);
+for (let i = 0; i < words.length; i++) {
+  const newUser = new User({
+    name: words[i].name,
+    email: words[i].email,
+    password: words[i].password
+    // isNgo: true
+  });
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) throw err;
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      newUser.password = hash;
+      newUser
+        .save()
+        .then(user => {
+          console.log(i, " ", user);
+        })
+        .catch(err => {
+          console.log(err);
+          // res.json(err);
+        });
+    });
+  }); 
+}*/
 
 module.exports = router;

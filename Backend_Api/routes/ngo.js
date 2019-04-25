@@ -90,7 +90,7 @@ router.get(
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         console.log(req.params.id); 
-    oUser.findById(req.params.id)
+    User.findById(req.params.id)
         .then(result=>{
             res.json(result);
         })
