@@ -2,22 +2,23 @@ import React from "react";
 import Navbar from "../../modules/Navbar";
 import "../pageStyles/userProfile.css";
 import axios from "axios";
-import {Link} from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 class UserProfile extends React.Component {
-  constructor(){
+  constructor() {
     super();
 
-    this.state={
-      username:"",
-
-    }
+    this.state = {
+      username: ""
+    };
   }
 
-  componentDidMount(){
-    /**  Get JWT token for verfication */ 
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+  componentDidMount() {
+    /**  Get JWT token for verfication */
+
+    axios.defaults.headers.common["Authorization"] = localStorage.getItem(
+      "jwtToken"
+    );
 
     /** Perform a get request to get the required data */
       axios.get("http://172.16.48.86:5000/user/profile")
@@ -30,9 +31,8 @@ class UserProfile extends React.Component {
         if(err.response.status === 401)this.props.history.push("/user/login");
       })
   }
-  
+
   render() {
-    
     return (
       <div style={{ border: "2px solid black" }}>
         <Navbar />

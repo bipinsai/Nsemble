@@ -50,7 +50,7 @@ class DonationCart extends React.Component {
   donated = event => {
     event.preventDefault();
     axios
-      .post("http://localhost:5000/user/donated", {
+      .post("http://172.16.48.86:5000/user/donated", {
         arr: this.state.arr,
         id: this.state.id
       })
