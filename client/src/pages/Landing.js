@@ -35,28 +35,13 @@ function Landing() {
         <div className="container">
           <div className="row">
             <div className="col-lg-8 mx-auto">
-              <h2>About this page</h2>
+              <h2>About this site</h2>
               <p className="lead">
-                This is a great place to talk about your webpage. This template
-                is purposefully unstyled so you can use it as a boilerplate or
-                starting point for you own landing page designs! This template
-                features:
+                This website allows general public to connect to NGO's.The web application grants the user the freedom to choose a time, date and place from when their donations will be picked up at their doorstep and transported to the NGO's. The application will also allow people to volunteer to transport the donations.
+The web applications also serves as a networking place for the NGO’s as they can post about the work done or any such information that they would like to share on the site.
+
               </p>
-              <ul>
-                <li>Clickable nav links that smooth scroll to page sections</li>
-                <li>
-                  Responsive behavior when clicking nav links perfect for a one
-                  page website
-                </li>
-                <li>
-                  Bootstrap's scrollspy feature which highlights which section
-                  of the page you're on in the navbar
-                </li>
-                <li>
-                  Minimal custom CSS so you are free to explore your own unique
-                  design options
-                </li>
-              </ul>
+               
             </div>
           </div>
         </div>
@@ -67,10 +52,12 @@ function Landing() {
             <div className="col-lg-8 mx-auto">
               <h2>Services we offer</h2>
               <p className="lead">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
-                optio velit inventore, expedita quo laboriosam possimus ea
-                consequatur vitae, doloribus consequuntur ex. Nemo assumenda
-                laborum vel, labore ut velit dignissimos.
+                <ul>
+                <li>Let people make donations from sitting comfortably at home effortlessly. </li>
+                <li>
+                    Let people volunteer for a good cause by helping the NGO's.
+                </li>
+              </ul>
               </p>
             </div>
           </div>
@@ -81,43 +68,27 @@ function Landing() {
           <div class="row">
             <div class="col-lg-4">
               <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="img/testimonials-1.jpg"
-                  alt=""
-                />
-                <h5>Margaret E.</h5>
-                <p class="font-weight-light mb-0">
-                  "This is fantastic! Thanks so much guys!"
-                </p>
+                <h5>Atharva Sune</h5>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="img/testimonials-2.jpg"
-                  alt=""
-                />
-                <h5>Fred S.</h5>
-                <p class="font-weight-light mb-0">
-                  "Bootstrap is amazing. I've been using it to create lots of
-                  super nice landing pages."
-                </p>
+                <h5>Ameya Salankar</h5>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="img/testimonials-3.jpg"
-                  alt=""
-                />
-                <h5>Sarah W.</h5>
-                <p class="font-weight-light mb-0">
-                  "Thanks so much for making these free resources available to
-                  us!"
-                </p>
+                <h5>Bipin Sai Narwa</h5>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                <h5>Amrit </h5>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                <h5>Uday Shahapur </h5>
               </div>
             </div>
           </div>
