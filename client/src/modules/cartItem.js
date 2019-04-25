@@ -42,10 +42,6 @@ class CartItem extends React.Component {
             </button>
           </div>
         </div>
-        <div className="col-md-4 mb-5">
-          <br />
-          <button className="btn btn-success">DONATE!</button>
-        </div>
       </div>
     );
   }
