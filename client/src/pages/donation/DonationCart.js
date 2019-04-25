@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../../modules/Navbar";
 import axios from "axios";
-import jsonQuery from "json-query";
+// import jsonQuery from "json-query";
 import CartItem from "../../modules/cartItem";
 
 class DonationCart extends React.Component {

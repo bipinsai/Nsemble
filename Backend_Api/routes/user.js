@@ -183,7 +183,6 @@ router.get(
             return res.status(403).send({success:false,msg:'Unauthorized'});
         }
     }
-  }
 );
 
 /** ONLY USE WHEN NEED TO INSERT MOCK DATA */
