@@ -2,52 +2,56 @@ import React from "react";
 import Navbar from "../../modules/Navbar";
 import "../pageStyles/userProfile.css";
 import axios from "axios";
-import {Link} from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 class UserProfile extends React.Component {
-  constructor(){
+  constructor() {
     super();
 
-    this.state={
-      username:"",
-
-    }
+    this.state = {
+      username: ""
+    };
   }
 
-  componentDidMount(){
-    /**  Get JWT token for verfication */ 
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+  componentDidMount() {
+    /**  Get JWT token for verfication */
+
+    axios.defaults.headers.common["Authorization"] = localStorage.getItem(
+      "jwtToken"
+    );
 
     /** Check if path name is user or ngo */
     /** Perform a get request to get the required data */
     /** Set state values as required */
-    
-    if(this.props.match.params.name === 'user'){  
-      axios.get("http://localhost:5000/user/profile")
-      .then((res)=>{
-        console.log(res.data);
-        this.setState({username : res.data.name});
-      })
-      .catch(err=>{
-        console.log(err.response.status);
-        if(err.response.status === 401)this.props.history.push("/user/login");
-      })
-    }else{
-      axios.get("http://localhost:5000/ngo/profile")
-      .then((res)=>{
-        console.log(res.data);
-        this.setState({username : res.data.name});
-      })
-      .catch(err=>{
-        console.log(err.response.status);
-        if(err.response.status === 401)this.props.history.push("/ngo/login");
-      })
+
+    if (this.props.match.params.name === "user") {
+      axios
+        .get("http://172.16.48.134:5000/user/profile")
+        .then(res => {
+          console.log(res.data);
+          this.setState({ username: res.data.name });
+        })
+        .catch(err => {
+          console.log(err.response.status);
+          if (err.response.status === 401)
+            this.props.history.push("/user/login");
+        });
+    } else {
+      axios
+        .get("http://172.16.48.134:5000/ngo/profile")
+        .then(res => {
+          console.log(res.data);
+          this.setState({ username: res.data.name });
+        })
+        .catch(err => {
+          console.log(err.response.status);
+          if (err.response.status === 401)
+            this.props.history.push("/ngo/login");
+        });
     }
   }
-  
+
   render() {
-    
     return (
       <div style={{ border: "2px solid black" }}>
         <Navbar />
@@ -63,14 +67,16 @@ class UserProfile extends React.Component {
                   />
                 </div>
                 <div class="profile-usertitle">
-                  <div class="profile-usertitle-name">{this.state.username}</div>
+                  <div class="profile-usertitle-name">
+                    {this.state.username}
+                  </div>
                   {/* <div class="profile-usertitle-job">*User Type*</div> */}
                 </div>
                 <div class="profile-userbuttons">
                   <button type="button" class="btn btn-success btn-sm">
                     Home
                   </button>
-                  <Link to='/user/welcome'>
+                  <Link to="/user/welcome">
                     <button type="button" class="btn btn-danger btn-sm">
                       Donate
                     </button>

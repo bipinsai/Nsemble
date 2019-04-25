@@ -21,7 +21,7 @@ class Welcome extends React.Component {
     /** Set state values as required */
     // localStorage.removeItem("jwtToken");
     axios
-      .get("http://localhost:5000/user/welcome")
+      .get("http://172.16.48.134:5000/user/welcome")
       .then(res => {
         console.log("hello\n", res.data);
         this.setState({ ngo: res.data });

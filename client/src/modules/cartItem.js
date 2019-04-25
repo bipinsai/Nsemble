@@ -13,7 +13,7 @@ class CartItem extends React.Component {
     e.preventDefault();
     let id = this.state.value._id;
     axios
-      .delete("http://localhost:5000/user/cart/", { data: { _id: id } })
+      .delete("http://172.16.48.134:5000/user/cart/", { data: { _id: id } })
       .then(res => {
         console.log("\n\n\nhellooo", res.data, "\n\n\n");
         window.location.reload();

@@ -35,7 +35,7 @@ class DonationForm extends React.Component {
     const newDonation = this.state;
 
     axios
-      .post("http://localhost:5000/user/donate", newDonation)
+      .post("http://172.16.48.134:5000/user/donate", newDonation)
       .then(res => {
         console.log("\n\n\nhellooo", res.data, "\n\n\n");
         if (res.data.status === 200) this.props.history.push("/user/cart");

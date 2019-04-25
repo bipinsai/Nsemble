@@ -1,7 +1,7 @@
 import React from "react";
 import "../pageStyles/Register.css";
 import axios from "axios";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 class ngoRegister extends React.Component {
   constructor() {
@@ -31,28 +31,32 @@ class ngoRegister extends React.Component {
 
     let user = this.props.match.params.name;
     console.log(user);
-      // console.log(newUser);
-    if(user === 'user'){
-      axios.post("http://localhost:5000/user/register", newUser).then(result => {
-        console.log(result);
-        this.props.history.push("/user/login");
-      });
-    }else{
-      axios.post("http://localhost:5000/ngo/register", newUser).then(result => {
-        console.log(result);
-        this.props.history.push("/ngo/login");
-      });
+    // console.log(newUser);
+    if (user === "user") {
+      axios
+        .post("http://172.16.48.134:5000/user/register", newUser)
+        .then(result => {
+          console.log(result);
+          this.props.history.push("/user/login");
+        });
+    } else {
+      axios
+        .post("http://172.16.48.134:5000/ngo/register", newUser)
+        .then(result => {
+          console.log(result);
+          this.props.history.push("/ngo/login");
+        });
     }
   };
 
-  onClick = e =>{
+  onClick = e => {
     let user = this.props.match.params.name;
-    if(user === 'user'){
+    if (user === "user") {
       this.props.history.push("/user/login");
-    }else{
+    } else {
       this.props.history.push("/ngo/login");
-    };
-  }
+    }
+  };
   render() {
     return (
       <div id="body">
@@ -128,7 +132,14 @@ class ngoRegister extends React.Component {
                     >
                       Register
                     </button>
-                    <Link className="d-block text-center mt-2 small" to={`${(this.props.match.params.name === 'user') ?'/user/login':'/ngo/login'}`}>
+                    <Link
+                      className="d-block text-center mt-2 small"
+                      to={`${
+                        this.props.match.params.name === "user"
+                          ? "/user/login"
+                          : "/ngo/login"
+                      }`}
+                    >
                       Sign In
                     </Link>
                   </form>
