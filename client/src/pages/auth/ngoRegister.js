@@ -31,21 +31,17 @@ class ngoRegister extends React.Component {
 
     let user = this.props.match.params.name;
     console.log(user);
-    // console.log(newUser);
-    if (user === "user") {
-      axios
-        .post("http://172.16.48.134:5000/user/register", newUser)
-        .then(result => {
-          console.log(result);
-          this.props.history.push("/user/login");
-        });
-    } else {
-      axios
-        .post("http://172.16.48.134:5000/ngo/register", newUser)
-        .then(result => {
-          console.log(result);
-          this.props.history.push("/ngo/login");
-        });
+      // console.log(newUser);
+    if(user === 'user'){
+      axios.post("http://172.16.48.86:5000/user/register", newUser).then(result => {
+        console.log(result);
+        this.props.history.push("/user/login");
+      });
+    }else{
+      axios.post("http://172.16.48.86:5000/ngo/register", newUser).then(result => {
+        console.log(result);
+        this.props.history.push("/ngo/login");
+      });
     }
   };
 

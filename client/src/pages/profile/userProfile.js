@@ -20,35 +20,16 @@ class UserProfile extends React.Component {
       "jwtToken"
     );
 
-    /** Check if path name is user or ngo */
     /** Perform a get request to get the required data */
-    /** Set state values as required */
-
-    if (this.props.match.params.name === "user") {
-      axios
-        .get("http://172.16.48.134:5000/user/profile")
-        .then(res => {
-          console.log(res.data);
-          this.setState({ username: res.data.name });
-        })
-        .catch(err => {
-          console.log(err.response.status);
-          if (err.response.status === 401)
-            this.props.history.push("/user/login");
-        });
-    } else {
-      axios
-        .get("http://172.16.48.134:5000/ngo/profile")
-        .then(res => {
-          console.log(res.data);
-          this.setState({ username: res.data.name });
-        })
-        .catch(err => {
-          console.log(err.response.status);
-          if (err.response.status === 401)
-            this.props.history.push("/ngo/login");
-        });
-    }
+      axios.get("http://172.16.48.86:5000/user/profile")
+      .then((res)=>{
+        console.log(res.data);
+        this.setState({username : res.data.name});
+      })
+      .catch(err=>{
+        console.log(err.response.status);
+        if(err.response.status === 401)this.props.history.push("/user/login");
+      })
   }
 
   render() {
@@ -67,16 +48,10 @@ class UserProfile extends React.Component {
                   />
                 </div>
                 <div class="profile-usertitle">
-                  <div class="profile-usertitle-name">
-                    {this.state.username}
-                  </div>
-                  {/* <div class="profile-usertitle-job">*User Type*</div> */}
+                  <div class="profile-usertitle-name">{this.state.username}</div>
                 </div>
                 <div class="profile-userbuttons">
-                  <button type="button" class="btn btn-success btn-sm">
-                    Home
-                  </button>
-                  <Link to="/user/welcome">
+                  <Link to='/user/welcome'>
                     <button type="button" class="btn btn-danger btn-sm">
                       Donate
                     </button>
@@ -105,7 +80,7 @@ class UserProfile extends React.Component {
                 <div class="profile-content">
                   <div class="cities" id="bon">
                     <h3> Bio: </h3>
-                    <p>*insert bio*</p>
+                    <p>I am a </p>
                   </div>
                   <div class="cities" id="don">
                     <h3> Donation 1:</h3>
@@ -146,7 +121,7 @@ class UserProfile extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 export default UserProfile;

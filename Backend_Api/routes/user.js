@@ -68,7 +68,7 @@ router.post("/login", (req, res) => {
         jwt.sign(
           payload,
           keys.secretKey,
-          { expiresIn: 86400 },
+          { expiresIn: 3600 },
           (err, token) => {
             if (err) throw err;
             // console.log("Sending token");
@@ -117,7 +117,7 @@ router.post("/donate", (req, res) => {
 
 router.get(
   "/cart",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Cart.find({}, (err, cargo) => {
       let cargoMap = {};

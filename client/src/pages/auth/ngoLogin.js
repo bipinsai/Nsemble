@@ -24,20 +24,17 @@ class Login extends React.Component {
       password: this.state.password
     };
     let user = this.props.match.params.name;
-    if (user === "user") {
-      axios
-        .post("http://172.16.48.134:5000/user/login", newUser)
-        .then(result => {
-          localStorage.setItem("jwtToken", result.data.token);
-          this.props.history.push("/user/profile");
-        });
-    } else {
-      axios
-        .post("http://172.16.48.134:5000/ngo/login", newUser)
-        .then(result => {
-          localStorage.setItem("jwtToken", result.data.token);
-          this.props.history.push("/ngo/profile");
-        });
+    if(user==='user'){
+        axios.post("http://172.16.48.86:5000/user/login", newUser).then(result => {
+        // console.log(result.data._id);
+        localStorage.setItem("jwtToken", result.data.token);
+        this.props.history.push("/user/profile");
+      });
+    }else{
+        axios.post("http://172.16.48.86:5000/ngo/login", newUser).then(result => {
+        localStorage.setItem("jwtToken", result.data.token);
+        this.props.history.push("/ngo/profile");
+      })
     }
   };
 
@@ -62,10 +59,10 @@ class Login extends React.Component {
                           className="form-control"
                           placeholder="Email address"
                           required
-                          autofocus
+                          autoFocus
                           value={this.state.email}
                         />
-                        <label for="inputEmail">Email address</label>
+                        <label htmlFor="inputEmail">Email address</label>
                       </div>
 
                       <div className="form-label-group">
@@ -79,7 +76,7 @@ class Login extends React.Component {
                           required
                           value={this.state.password}
                         />
-                        <label for="inputPassword">Password</label>
+                        <label htmlFor="inputPassword">Password</label>
                       </div>
 
                       <div className="custom-control custom-checkbox mb-3">
@@ -90,7 +87,7 @@ class Login extends React.Component {
                         />
                         <label
                           className="custom-control-label"
-                          for="customCheck1"
+                          htmlFor="customCheck1"
                         >
                           Remember password
                         </label>

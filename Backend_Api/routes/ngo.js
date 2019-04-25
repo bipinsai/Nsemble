@@ -86,14 +86,14 @@ router.post("/login", (req, res) => {
 });
 
 router.get(
-    "/profile",
+    "/profile/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-      res.json({
-        id: req.user.id,
-        name: req.user.name,
-        email: req.user.email,
-      });
+        console.log(req.params.id); 
+    User.findById(req.params.id)
+        .then(result=>{
+            res.json(result);
+        })
     }
 );
 

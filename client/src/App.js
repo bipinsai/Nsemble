@@ -6,6 +6,7 @@ import nRegister from "./pages/auth/ngoRegister";
 import DonationCart from "./pages/donation/DonationCart";
 import DonationPage from "./pages/donation/Donation";
 import UserProfile from "./pages/profile/userProfile.js";
+import ngoProfile from "./pages/profile/ngoProfile.js";
 import Welcome from "./pages/Welcome.js";
 
 class App extends Component {
@@ -17,7 +18,9 @@ class App extends Component {
           <Route path="/:name/login" component={nLogin} />
           <Route path="/:name/register" component={nRegister} />
           <Route exact path="/user/donate" component={DonationPage} />
-          <Route exact path="/:name/profile" component={UserProfile} />
+          <Route exact path="/user/profile" component={UserProfile} />
+          <Route exact path="/ngo/profile/:id" component={ngoProfile} />
+          <Route exact path="/user/donates" component={DonationPage} />
           <Route exact path="/user/welcome" component={Welcome} />
           <Route exact path="/user/cart" component={DonationCart} />
         </div>
