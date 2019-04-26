@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const user = require("./routes/user.js");
 const ngo = require("./routes/ngo.js");
+const admin = require("./routes/admin");
 const app = express();
 
 // body parser middleware
@@ -23,6 +24,7 @@ require("./config/passport.js")(passport);
 //Use Routes
 app.use("/user", user);
 app.use("/ngo",ngo);
+app.use("/admin",admin);
 
 const port = process.env.PORT || 5000;
 

@@ -3,8 +3,26 @@ import Carousel from "../../modules/carousel";
 import DonationForm from "../../modules/formDonation";
 import Navbar from "../../modules/Navbar";
 import "../pageStyles/donationPage.css";
+import Axios from "axios";
 
 class DonationPage extends React.Component {
+  componentDidMount(){
+
+    Axios.defaults.headers.common["Authorization"] = localStorage.getItem(
+      "jwtToken"
+    );
+    Axios.get("http://172.16.48.86:3000/user/donate")
+      .then(res=>{
+        console.log("authorized");
+      })
+      .catch((error)=>{
+        if(error.response.status === 401){
+          this.props.history.push("/user/login");
+        }
+      })
+    // localStorage.removeItem('jwtToken');
+  }
+
   render() {
     return (
       <div>
