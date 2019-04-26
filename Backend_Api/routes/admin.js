@@ -28,6 +28,7 @@ router.get("/dashboard",(req,res)=>{
                 nSemblers,
                 donationSum,
                 ngos,
+                result
             })
         })
 })  

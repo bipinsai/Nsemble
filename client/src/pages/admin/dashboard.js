@@ -10,15 +10,38 @@ class dashboard extends React.Component {
       ngos: "",
       NSemblers: "",
       donations: "",
+      result:[]
     };
   }
-
+  NGOList = e => {
+    console.log("Inside NGOlist", this.state.result);
+    if(this.state.result.length === 0)
+    return <h3>No Ngos to display :(</h3>
+    else {
+      return this.state.result.map((ngo, index) => {
+        if(ngo.isNgo === true){
+          return(
+          <React.Fragment>
+            <div class="col-lg-4 col-md-4 col-6" key={index}>
+              <img class="img-fluid img-thumbnail" src={ngo.logo} alt="" />
+              <h3>{ngo.name}</h3>
+            </div>
+            </React.Fragment>
+          );
+        }
+        else {
+          return <p key={index}></p>
+        }
+      })
+    }
+  }
   componentDidMount(){
       axios.get("http://172.16.48.86:5000/admin/dashboard")
         .then(res=>{
           this.setState({ngos : res.data.ngos});
           this.setState({NSemblers : res.data.nSemblers});
           this.setState({donations : res.data.donationSum});
+          this.setState({result: res.data.result});
         })
         .catch(err=>{
             console.log(err);
@@ -40,6 +63,8 @@ class dashboard extends React.Component {
               $(".wrapper").toggleClass("active");
             });
           });
+
+          console.log(this.state.result);
   }
 
   render() {
@@ -95,12 +120,27 @@ class dashboard extends React.Component {
             </div>
           </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-            <div class="col-md-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          </div>
+          <div class="container">
+
+  {/* <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Thumbnail Gallery</h1> */}
+
+  <hr class="mt-2 mb-5" />
+
+    {/* {this.state.result.map(result=>{
+      return(
+        <div class="col-lg-3 col-md-4 col-6">
+      
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="" />
+          
+        </div>
+      )
+    })} */}
+    <div><h1 style={{color:'black'}}>NGO's</h1></div><br />
+    <div class="row text-center text-lg-left">
+    <this.NGOList />
+    
+  </div>
+  </div>
         </div>
         </main>
         </div>
