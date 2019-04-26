@@ -8,10 +8,10 @@
   background: linear-gradient(to right, #0062E6, rgb(2, 115, 190));
 }
 
-.card{
+/* .card{
   border: 2px solid red;
   height: 85vh;
-}
+} */
 .card-signin {
   border: 0;
   border-radius: 1rem;

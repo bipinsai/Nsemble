@@ -14,7 +14,7 @@ const cartSchema = new Schema({
   condition: {
     type: String,
     default: "new"
-  }
+  },
 });
 
 module.exports = Cart = mongoose.model("carts", cartSchema);
