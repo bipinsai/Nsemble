@@ -252,7 +252,7 @@ router.post("/profile",passport.authenticate("jwt",{session:false}),(req,res)=>{
         return model.save();
       })
       .then((model)=>{
-      console.log(model)
+        res.json(model);
       
       })
       .catch(err=>{

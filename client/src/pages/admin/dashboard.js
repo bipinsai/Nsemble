@@ -24,7 +24,7 @@ class dashboard extends React.Component {
           <React.Fragment>
             <div class="col-lg-4 col-md-4 col-6" key={index}>
               <img class="img-fluid img-thumbnail" src={ngo.logo} alt="" />
-              <h3>{ngo.name}</h3>
+              <a href={`${'/ngo/profile/'+ngo._id}`}><h3>{ngo.name}</h3></a>
             </div>
             </React.Fragment>
           );

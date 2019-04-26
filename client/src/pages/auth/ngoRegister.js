@@ -1,6 +1,7 @@
 import React from "react";
 import "../pageStyles/Register.css";
 import axios from "axios";
+import Navbar from "../../modules/Navbar";
 import { Link } from "react-router-dom";
 
 class ngoRegister extends React.Component {
@@ -58,6 +59,7 @@ class ngoRegister extends React.Component {
   render() {
     return (
       <div id="body">
+      <Navbar />
         <div className="container">
           <div className="row">
             <div className="col-lg-10 col-xl-9 mx-auto">

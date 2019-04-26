@@ -49,10 +49,26 @@ function Navbar() {
                   </a>
                 </div>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/user/register">
-                  Register as a User
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Register
                 </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/user/register">
+                    as a User
+                  </a>
+                  <a class="dropdown-item" href="/ngo/register">
+                    as an NGO
+                  </a>
+                </div>
               </li>
             </ul>
           </div>

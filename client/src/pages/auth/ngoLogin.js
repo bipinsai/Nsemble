@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "../pageStyles/Login.css";
+import Navbar from "../../modules/Navbar";
 
 class Login extends React.Component {
   constructor() {
@@ -40,6 +41,8 @@ class Login extends React.Component {
 
   render() {
     return (
+      <div>
+              <Navbar />
       <div className="container-fluid">
         <div className="row no-gutter">
           <div className="d-none d-md-flex col-md-4 col-lg-5 bg-image" />
@@ -110,6 +113,7 @@ class Login extends React.Component {
             </div>
           </div>
         </div>
+      </div>
       </div>
     );
   }

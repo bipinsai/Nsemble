@@ -85,6 +85,8 @@ class UserProfile extends React.Component {
   onClick = e =>{
     axios.post("http://172.16.48.86:5000/user/profile")
           .then((res)=>{
+            console.log(res);
+            this.setState({isNsembler: res.data.isNsembler});
             window.location.reload();
           })
   }
