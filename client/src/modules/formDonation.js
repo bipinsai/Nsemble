@@ -35,7 +35,7 @@ class DonationForm extends React.Component {
     const newDonation = this.state;
 
     axios
-      .post("http://172.16.48.86:5000/user/donate", newDonation)
+      .post("http://localhost:5000/user/donate", newDonation)
       .then(res => {
         console.log("\n\n\nhellooo", res.data, "\n\n\n");
         if (res.data.status === 200) this.props.history.push("/user/cart");
@@ -115,6 +115,7 @@ class DonationForm extends React.Component {
                     aria-describedby="conditionHelpBlock"
                     class="custom-control-input"
                     value="used"
+                    required
                   />
                   <label for="condition_1" class="custom-control-label">
                     Used
@@ -142,7 +143,12 @@ class DonationForm extends React.Component {
             </div>
           </div>
           <div class="form-group col-sm-6">
-            <button name="submit" type="submit" class="btn btn-primary">
+            <button
+              name="submit"
+              type="submit"
+              class="btn btn-primary"
+              onClick={this.addToCart}
+            >
               Add to cart
             </button>
             <button

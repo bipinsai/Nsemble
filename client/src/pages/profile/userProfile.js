@@ -40,8 +40,8 @@ class UserProfile extends React.Component {
     if (this.state.donation.length === 0)
     {
       return (
-        <div className="container" style={{margin:"auto"}} >
-          <h2 style={{color: "red"}}>No donations yet!</h2>
+        <div className="container" style={{ margin: "auto" }}>
+          <h2 style={{ color: "red" }}>No donations yet!</h2>
         </div>
       );
     }
@@ -59,7 +59,7 @@ class UserProfile extends React.Component {
         })
       );
     }
-  }
+  };
   componentDidMount() {
     /**  Get JWT token for verfication */
 
@@ -68,18 +68,19 @@ class UserProfile extends React.Component {
     );
 
     /** Perform a get request to get the required data */
-      axios.get("http://172.16.48.86:5000/user/profile")
-      .then((res)=>{
+    axios
+      .get("http://localhost:5000/user/profile")
+      .then(res => {
         console.log(res.data);
         this.setState({username : res.data.name});
         this.setState({donation : res.data.donation});
         this.setState({logo: res.data.logo});
         this.setState({isNsembler: res.data.isNsembler});
       })
-      .catch(err=>{
+      .catch(err => {
         console.log(err.response.status);
-        if(err.response.status === 401)this.props.history.push("/user/login");
-      })
+        if (err.response.status === 401) this.props.history.push("/user/login");
+      });
   }
   onClick = e =>{
     axios.post("http://172.16.48.86:5000/user/profile")
@@ -95,7 +96,10 @@ class UserProfile extends React.Component {
           <div className="row profile">
             <div className="col-md-4">
               <div className="profile-sidebar">
-                <div className="profile-userpic" style={{display:'flex',justifyContent:'space-around'}}>
+                <div
+                  className="profile-userpic"
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
                   <img
                     src={`${this.state.logo}`}
                     className="img-responsive"
@@ -103,11 +107,23 @@ class UserProfile extends React.Component {
                   />
                 </div>
                 <div className="profile-usertitle">
-                  <div className="profile-usertitle-name" style={{color:'black'}}><h3>{this.state.username}</h3></div>
+                  <div
+                    className="profile-usertitle-name"
+                    style={{ color: "black" }}
+                  >
+                    <h3>{this.state.username}</h3>
+                  </div>
                 </div>
-                <div className="profile-userbuttons" style={{marginTop:'5%'}}>
-                  <Link to='/user/donate'>
-                    <button type="button" className="btn btn-danger btn-sm" style={{fontSize:'14px'}}>
+                <div
+                  className="profile-userbuttons"
+                  style={{ marginTop: "5%" }}
+                >
+                  <Link to="/user/donate">
+                    <button
+                      type="button"
+                      className="btn btn-danger btn-sm"
+                      style={{ fontSize: "14px" }}
+                    >
                       Donate
                     </button>
                   </Link>
@@ -125,7 +141,7 @@ class UserProfile extends React.Component {
                 </div>
               </div>
             </div>
-            <div id="message" style={{width:'60%'}}>
+            <div id="message" style={{ width: "60%" }}>
               <div className="col-md-12">
                 <div className="profile-content">
                   <this.DonationList />
@@ -135,7 +151,7 @@ class UserProfile extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 export default UserProfile;

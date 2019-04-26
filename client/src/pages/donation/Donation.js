@@ -27,8 +27,9 @@ class DonationPage extends React.Component {
     return (
       <div>
         <Navbar />
-        <div class="jumbotron">
-          <Carousel />
+        <div class="jumbotron container">
+          {/* <Carousel /> */}
+          <h1>Donate Something Today!</h1>
         </div>
         <DonationForm history={this.props.history} />
       </div>

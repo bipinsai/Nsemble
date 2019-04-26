@@ -65,20 +65,15 @@ router.post("/login", (req, res) => {
         const payload = { name: user.name, id: user.id };
 
         //Sign Token
-        jwt.sign(
-          payload,
-          keys.secretKey,
-          { expiresIn: 3600 },
-          (err, token) => {
-            if (err) throw err;
-            // console.log("Sending token");
-            res.json({
-              //Using Bearer authentication
-              success: true,
-              token: "Bearer " + token
-            });
-          }
-        );
+        jwt.sign(payload, keys.secretKey, { expiresIn: 3600 }, (err, token) => {
+          if (err) throw err;
+          // console.log("Sending token");
+          res.json({
+            //Using Bearer authentication
+            success: true,
+            token: "Bearer " + token
+          });
+        });
       } else {
         return res.status(400).json({ password: "Incorrect Password" });
       }
@@ -86,16 +81,20 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.get("/donate",passport.authenticate("jwt",{session:false}),(req,res)=>{
-  let token = getToken(req.headers);
-  if(token){
-    console.log("Succeed");
-  }else{
-    return res.status(401).send({ success: false, msg: "Unauthorized" });
+router.get(
+  "/donate",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    let token = getToken(req.headers);
+    if (token) {
+      console.log("Succeed");
+    } else {
+      return res.status(401).send({ success: false, msg: "Unauthorized" });
+    }
   }
-})
+);
 
-router.post("/donate",(req, res) => {
+router.post("/donate", (req, res) => {
   // console.log("In Post");
   const itemType = req.body.itemType,
     otherItems = req.body.otherItems,
@@ -129,31 +128,35 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     let token = getToken(req.headers);
-    if(token){
+    if (token) {
       Cart.find({}, (err, cargo) => {
         let cargoMap = {};
-  
+
         cargo.forEach(function(ob) {
           cargoMap[ob._id] = ob;
         });
-  
+
         console.log(cargoMap);
         res.json({ cart: cargoMap });
       });
-    }else{
+    } else {
       return res.status(403).send({ success: false, msg: "Unauthorized" });
     }
   }
 );
 
-router.delete("/cart", (req, res) => {
-  // console.log("this is the req\n", req);
-  Cart.findByIdAndDelete({ _id: req.body._id }, (err, cargo) => {
-    if (err) res.json({ success: false, status: 500 });
-    console.log("successfully deleted the cargo\n", cargo);
-    res.json({ success: true, status: 200 });
-  });
-});
+router.delete(
+  "/cart",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    // console.log("this is the req\n", req);
+    Cart.findByIdAndDelete({ _id: req.body._id }, (err, cargo) => {
+      if (err) res.json({ success: false, status: 500 });
+      console.log("successfully deleted the cargo\n", cargo);
+      res.json({ success: true, status: 200 });
+    });
+  }
+);
 
 router.post(
   "/donated",
@@ -161,35 +164,35 @@ router.post(
   (req, res) => {
     // let token = getToken(req.headers);
     // if(token){
-      User.findById(req.user._id)
-        .then(model => {
-          req.body.arr.forEach(elem => {
-            model.donation.push(elem);
-          });
-
-          return model;
-        })
-        .then(model => {
-          return model.save();
-        })
-        .then(updatedModel => {
-          console.log("\nmodel updated", updatedModel);
-          req.body.arr.forEach(element => {
-            console.log(element._id);
-            Cart.findByIdAndDelete({ _id: element._id }, (err, cargo) => {
-              if (err) throw err;
-              console.log("\ndeleted\n", cargo._id);
-            });
-          });
-          res.json({
-            msg: "model updated",
-            status: 200,
-            updatedModel
-          });
-        })
-        .catch(err => {
-          res.send(err);
+    User.findById(req.user._id)
+      .then(model => {
+        req.body.arr.forEach(elem => {
+          model.donation.push(elem);
         });
+
+        return model;
+      })
+      .then(model => {
+        return model.save();
+      })
+      .then(updatedModel => {
+        console.log("\nmodel updated", updatedModel);
+        req.body.arr.forEach(element => {
+          console.log(element._id);
+          Cart.findByIdAndDelete({ _id: element._id }, (err, cargo) => {
+            if (err) throw err;
+            console.log("\ndeleted\n", cargo._id);
+          });
+        });
+        res.json({
+          msg: "model updated",
+          status: 200,
+          updatedModel
+        });
+      })
+      .catch(err => {
+        res.send(err);
+      });
     // }else{
     //   return res.status(403).send({ success: false, msg: "Unauthorized" });
     // }
@@ -263,31 +266,31 @@ router.post("/profile",passport.authenticate("jwt",{session:false}),(req,res)=>{
 // var data = fs.readFileSync("MOCK_NGO.json", "utf-8");
 // var words = JSON.parse(data);
 // for (let i = 0; i < 10; i++) {
-  // if(i%13===4){
-  //   const newUser = new User({
-  //     name: words[i].name,
-  //     email: words[i].email,
-  //     password: words[i].password,
-  //     // isNgo: true
-  //     logo: words[i].logo,
-  //     isNsembler: true
-  //   });
-  //   bcrypt.genSalt(10, (err, salt) => {
-  //     if (err) throw err;
-  //     bcrypt.hash(newUser.password, salt, (err, hash) => {
-  //       newUser.password = hash;
-  //       newUser
-  //         .save()
-  //         .then(user => {
-  //           console.log(i, " ", user);
-  //         })
-  //         .catch(err => {
-  //           console.log(err);
-  //           // res.json(err);
-  //         });
-  //     });
-  //   });
-  // }else
+// if(i%13===4){
+//   const newUser = new User({
+//     name: words[i].name,
+//     email: words[i].email,
+//     password: words[i].password,
+//     // isNgo: true
+//     logo: words[i].logo,
+//     isNsembler: true
+//   });
+//   bcrypt.genSalt(10, (err, salt) => {
+//     if (err) throw err;
+//     bcrypt.hash(newUser.password, salt, (err, hash) => {
+//       newUser.password = hash;
+//       newUser
+//         .save()
+//         .then(user => {
+//           console.log(i, " ", user);
+//         })
+//         .catch(err => {
+//           console.log(err);
+//           // res.json(err);
+//         });
+//     });
+//   });
+// }else
 //   {
 //     const newUser = new User({
 //       name: words[i].name,
@@ -311,7 +314,7 @@ router.post("/profile",passport.authenticate("jwt",{session:false}),(req,res)=>{
 //           });
 //       });
 //     });
-//   } 
+//   }
 // }
 
 module.exports = router;
