@@ -27,19 +27,31 @@ function Navbar() {
                   <span className="sr-only">(current)</span>
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/about">
-                  About
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/login">
+
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
                   Login
                 </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/user/login">
+                    as a User
+                  </a>
+                  <a class="dropdown-item" href="/ngo/login">
+                    as an NGO
+                  </a>
+                </div>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/register">
-                  Register
+                  Register as a User
                 </a>
               </li>
             </ul>

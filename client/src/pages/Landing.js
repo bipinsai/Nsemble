@@ -20,12 +20,26 @@ function Landing() {
           />
         </video>
         <div className="container h-100">
-          <div className="d-flex h-100 text-center align-items-center" style={{paddingTop:'-10%'}}>
-            <div className="w-100 text-white" style={{height:'60%'}}>
-              <h1 className="display-3" >Nsemble</h1>
-              <div className="container" style={{display:'flex',width:'60%',marginTop: '15%',justifyContent:'space-around'}}>
-                <a href="/ngo/register"><button className="btn btn-primary btn-lg" style={{width:'150%'}}>NGO</button></a>
-                <a href="/user/register"><button className="btn btn-success btn-lg" style={{width:'125%'}}>Donator</button></a>
+          <div
+            className="d-flex h-100 text-center align-items-center"
+            style={{ paddingTop: "-10%" }}
+          >
+            <div className="w-100 text-white" style={{ height: "60%" }}>
+              <h1 className="display-3">Nsemble</h1>
+              <div
+                className="container"
+                style={{
+                  display: "flex",
+                  width: "60%",
+                  marginTop: "15%",
+                  justifyContent: "space-around"
+                }}
+              >
+                <p className="lead" style={{ fontSize: "25px" }}>
+                  Making donations easier
+                </p>
+                {/* <a href="/ngo/register"><button className="btn btn-primary btn-lg" style={{width:'150%'}}>NGO</button></a>
+                <a href="/user/register"><button className="btn btn-success btn-lg" style={{width:'125%'}}>Donator</button></a> */}
               </div>
             </div>
           </div>
@@ -37,11 +51,15 @@ function Landing() {
             <div className="col-lg-8 mx-auto">
               <h2>About this site</h2>
               <p className="lead">
-                This website allows general public to connect to NGO's.The web application grants the user the freedom to choose a time, date and place from when their donations will be picked up at their doorstep and transported to the NGO's. The application will also allow people to volunteer to transport the donations.
-The web applications also serves as a networking place for the NGO’s as they can post about the work done or any such information that they would like to share on the site.
-
+                This website allows general public to connect to NGO's.The web
+                application grants the user the freedom to choose a time, date
+                and place from when their donations will be picked up at their
+                doorstep and transported to the NGO's. The application will also
+                allow people to volunteer to transport the donations. The web
+                applications also serves as a networking place for the NGO’s as
+                they can post about the work done or any such information that
+                they would like to share on the site.
               </p>
-               
             </div>
           </div>
         </div>
@@ -53,11 +71,14 @@ The web applications also serves as a networking place for the NGO’s as they c
               <h2>Services we offer</h2>
               <p className="lead">
                 <ul>
-                <li>Let people make donations from sitting comfortably at home effortlessly. </li>
-                <li>
+                  <li>
+                    Let people make donations from sitting comfortably at home
+                    effortlessly.{" "}
+                  </li>
+                  <li>
                     Let people volunteer for a good cause by helping the NGO's.
-                </li>
-              </ul>
+                  </li>
+                </ul>
               </p>
             </div>
           </div>
