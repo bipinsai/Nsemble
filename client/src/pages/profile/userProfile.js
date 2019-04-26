@@ -21,15 +21,16 @@ class UserProfile extends React.Component {
     );
 
     /** Perform a get request to get the required data */
-      axios.get("http://172.16.48.86:5000/user/profile")
-      .then((res)=>{
+    axios
+      .get("http://localhost:5000/user/profile")
+      .then(res => {
         console.log(res.data);
-        this.setState({username : res.data.name});
+        this.setState({ username: res.data.name });
       })
-      .catch(err=>{
+      .catch(err => {
         console.log(err.response.status);
-        if(err.response.status === 401)this.props.history.push("/user/login");
-      })
+        if (err.response.status === 401) this.props.history.push("/user/login");
+      });
   }
 
   render() {
@@ -48,10 +49,12 @@ class UserProfile extends React.Component {
                   />
                 </div>
                 <div class="profile-usertitle">
-                  <div class="profile-usertitle-name">{this.state.username}</div>
+                  <div class="profile-usertitle-name">
+                    {this.state.username}
+                  </div>
                 </div>
                 <div class="profile-userbuttons">
-                  <Link to='/user/welcome'>
+                  <Link to="/user/welcome">
                     <button type="button" class="btn btn-danger btn-sm">
                       Donate
                     </button>
@@ -121,7 +124,7 @@ class UserProfile extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 export default UserProfile;
