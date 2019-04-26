@@ -10,10 +10,36 @@ class UserProfile extends React.Component {
 
     this.state = {
       username: "",
-      donation:[]
+      donation:[],
+      logo:""
     };
   }
 
+  DonationList = (e) =>
+  {
+    if (this.state.donation.length === 0)
+    {
+      return (
+        <div className="container" style={{margin:"auto"}} >
+          <h2 style={{color: "red"}}>No donations yet!</h2>
+        </div>
+      );
+    }
+    else {
+      return (
+      this.state.donation.map((donation,index)=>{
+        return(
+          <div className="cities" id="don">
+              <h4> Donation {index+1}:</h4>
+                <b><h6>{donation.itemType.toUpperCase()}</h6></b>
+                <h6>{donation.otherItems}</h6>
+                <h6>Condition : {donation.condition}</h6>
+            </div>
+          )
+        })
+      );
+    }
+  }
   componentDidMount() {
     /**  Get JWT token for verfication */
 
@@ -26,7 +52,8 @@ class UserProfile extends React.Component {
       .then((res)=>{
         console.log(res.data);
         this.setState({username : res.data.name});
-        this.setState({donation : res.data.donation})
+        this.setState({donation : res.data.donation});
+        this.setState({logo: res.data.logo});
       })
       .catch(err=>{
         console.log(err.response.status);
@@ -38,43 +65,32 @@ class UserProfile extends React.Component {
     return (
       <div>
         <Navbar />
-        <div class="container">
-          <div class="row profile">
-            <div class="col-md-4">
-              <div class="profile-sidebar">
-                <div class="profile-userpic" style={{display:'flex',justifyContent:'space-around'}}>
+        <div className="container">
+          <div className="row profile">
+            <div className="col-md-4">
+              <div className="profile-sidebar">
+                <div className="profile-userpic" style={{display:'flex',justifyContent:'space-around'}}>
                   <img
-                    src="https://static.change.org/profile-img/default-user-profile.svg"
-                    class="img-responsive"
+                    src={`${this.state.logo}`}
+                    className="img-responsive"
                     alt=""
                   />
                 </div>
-                <div class="profile-usertitle">
-                  <div class="profile-usertitle-name" style={{color:'black'}}><h3>{this.state.username}</h3></div>
+                <div className="profile-usertitle">
+                  <div className="profile-usertitle-name" style={{color:'black'}}><h3>{this.state.username}</h3></div>
                 </div>
-                <div class="profile-userbuttons" style={{marginTop:'5%'}}>
-                  <Link to='/user/update'>
-                    <button type="button" class="btn btn-success btn-sm" style={{marginRight:'5%',fontSize:'14px'}}>
-                      Update
-                    </button>
-                  </Link>
+                <div className="profile-userbuttons" style={{marginTop:'5%'}}>
                   <Link to='/user/donate'>
-                    <button type="button" class="btn btn-danger btn-sm" style={{fontSize:'14px'}}>
+                    <button type="button" className="btn btn-danger btn-sm" style={{fontSize:'14px'}}>
                       Donate
                     </button>
                   </Link>
                 </div>
-                <div class="profile-usermenu">
-                  <ul class="nav">
-                    <li class="active">
-                      <a href="#bon">
-                        <i class="glyphicon glyphicon-home" />
-                        My Bio
-                      </a>
-                    </li>
-                    <li>
+                <div className="profile-usermenu">
+                  <ul className="nav">
+                    <li className="active">
                       <a href="#don">
-                        <i class="glyphicon glyphicon-ok" />
+                        <i className="glyphicon glyphicon-ok" />
                         My Donations
                       </a>
                     </li>
@@ -83,22 +99,9 @@ class UserProfile extends React.Component {
               </div>
             </div>
             <div id="message" style={{width:'60%'}}>
-              <div class="col-md-12">
-                <div class="profile-content">
-                  <div class="cities" id="bon">
-                    <h3> Bio: </h3>
-                    <p>I am a </p>
-                  </div>
-                  {this.state.donation.map((donation,index)=>{
-                    return(
-                      <div class="cities" id="don">
-                          <h4> Donation {index+1}:</h4>
-                            <b><h6>{donation.itemType.toUpperCase()}</h6></b>
-                            <h6>{donation.otherItems}</h6>
-                            <h6>Condition : {donation.condition}</h6>
-                        </div>
-                      )
-                    })}
+              <div className="col-md-12">
+                <div className="profile-content">
+                  <this.DonationList />
                 </div>
               </div>
             </div>

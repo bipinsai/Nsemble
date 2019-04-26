@@ -7,16 +7,18 @@ class dashboard extends React.Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
-      errors: []
+      ngos: "",
+      NSemblers: "",
+      donations: "",
     };
   }
 
   componentDidMount(){
-      axios.get("http://172.16.48.86:3000")
+      axios.get("http://172.16.48.86:5000/admin/dashboard")
         .then(res=>{
-
+          this.setState({ngos : res.data.ngos});
+          this.setState({NSemblers : res.data.nSemblers});
+          this.setState({donations : res.data.donationSum});
         })
         .catch(err=>{
             console.log(err);
@@ -75,21 +77,21 @@ class dashboard extends React.Component {
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-4 my-3">
-            <div class="bg-mattBlackLight p-3">
-              <h4 class="mb-2">New NGO's</h4>
-              <div class="progress-bar progress-bar-striped progress-bar-animated" style={{width: "45%"}}>45%</div>
+            <div class="bg-mattBlackLight p-3" style={{textAlign:'center',color:"white"}}>
+              <h4 class="mb-2">Total NGO's</h4>
+              <div class="progress-bar" style={{width:(this.state.ngos)*8}}><h3>{this.state.ngos}</h3> </div>
             </div>
           </div>
           <div class="col-md-4 my-3">
-            <div class="bg-mattBlackLight p-3">
-              <h4 class="mb-2">New NSemblers</h4>
-              <div class="progress-bar progress-bar-striped progress-bar-animated" style={{width: "38%"}}>38%</div>
+            <div class="bg-mattBlackLight p-3" style={{textAlign:'center',color:"white"}}>
+              <h4 class="mb-2">Total NSemblers</h4>
+              <div class="progress-bar" style={{width:(this.state.NSemblers)*7}}><h3>{this.state.NSemblers}</h3></div>
             </div>
           </div>
           <div class="col-md-4 my-3">
-            <div class="bg-mattBlackLight p-3">
-              <h4 class="mb-2">New Donators</h4>
-              <div class="progress-bar progress-bar-striped progress-bar-animated" style={{width: "29%"}}>29%</div>
+            <div class="bg-mattBlackLight p-3" style={{textAlign:'center',color:"white"}}>
+              <h4 class="mb-2">Total Donations</h4>
+              <div class="progress-bar" style={{width:(this.state.donations)*7}}><h3>{this.state.donations}</h3></div>
             </div>
           </div>
           </div>

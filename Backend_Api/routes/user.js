@@ -86,7 +86,16 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.post("/donate", (req, res) => {
+router.get("/donate",passport.authenticate("jwt",{session:false}),(req,res)=>{
+  let token = getToken(req.headers);
+  if(token){
+    console.log("Succeed");
+  }else{
+    return res.status(401).send({ success: false, msg: "Unauthorized" });
+  }
+})
+
+router.post("/donate",(req, res) => {
   // console.log("In Post");
   const itemType = req.body.itemType,
     otherItems = req.body.otherItems,
@@ -119,16 +128,21 @@ router.get(
   "/cart",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Cart.find({}, (err, cargo) => {
-      let cargoMap = {};
-
-      cargo.forEach(function(ob) {
-        cargoMap[ob._id] = ob;
+    let token = getToken(req.headers);
+    if(token){
+      Cart.find({}, (err, cargo) => {
+        let cargoMap = {};
+  
+        cargo.forEach(function(ob) {
+          cargoMap[ob._id] = ob;
+        });
+  
+        console.log(cargoMap);
+        res.json({ cart: cargoMap });
       });
-
-      console.log(cargoMap);
-      res.json({ cart: cargoMap });
-    });
+    }else{
+      return res.status(403).send({ success: false, msg: "Unauthorized" });
+    }
   }
 );
 
@@ -145,35 +159,40 @@ router.post(
   "/donated",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    User.findById(req.user._id)
-      .then(model => {
-        req.body.arr.forEach(elem => {
-          model.donation.push(elem);
-        });
-
-        return model;
-      })
-      .then(model => {
-        return model.save();
-      })
-      .then(updatedModel => {
-        console.log("\nmodel updated", updatedModel);
-        req.body.arr.forEach(element => {
-          console.log(element._id);
-          Cart.findByIdAndDelete({ _id: element._id }, (err, cargo) => {
-            if (err) throw err;
-            console.log("\ndeleted\n", cargo._id);
+    // let token = getToken(req.headers);
+    // if(token){
+      User.findById(req.user._id)
+        .then(model => {
+          req.body.arr.forEach(elem => {
+            model.donation.push(elem);
           });
+
+          return model;
+        })
+        .then(model => {
+          return model.save();
+        })
+        .then(updatedModel => {
+          console.log("\nmodel updated", updatedModel);
+          req.body.arr.forEach(element => {
+            console.log(element._id);
+            Cart.findByIdAndDelete({ _id: element._id }, (err, cargo) => {
+              if (err) throw err;
+              console.log("\ndeleted\n", cargo._id);
+            });
+          });
+          res.json({
+            msg: "model updated",
+            status: 200,
+            updatedModel
+          });
+        })
+        .catch(err => {
+          res.send(err);
         });
-        res.json({
-          msg: "model updated",
-          status: 200,
-          updatedModel
-        });
-      })
-      .catch(err => {
-        res.send(err);
-      });
+    // }else{
+    //   return res.status(403).send({ success: false, msg: "Unauthorized" });
+    // }
   }
 );
 
@@ -225,7 +244,7 @@ router.get(
 //  var fs = require("fs");
 // var data = fs.readFileSync("MOCK_NGO.json", "utf-8");
 // var words = JSON.parse(data);
-// for (let i = 0; i < words.length; i++) {
+// for (let i = 0; i < 10; i++) {
   // if(i%13===4){
   //   const newUser = new User({
   //     name: words[i].name,
