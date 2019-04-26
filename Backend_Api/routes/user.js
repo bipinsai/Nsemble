@@ -240,6 +240,24 @@ router.get(
   }
 );
 
+router.post("/profile",passport.authenticate("jwt",{session:false}),(req,res)=>{
+  let token = getToken(req.headers);
+  if(token){
+    User.findById(req.user.id)
+      .then(model=>{
+        model.isNsembler =  true;
+        return model.save();
+      })
+      .then((model)=>{
+      console.log(model)
+      
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+  }
+})
+
 /** ONLY USE WHEN NEED TO INSERT MOCK DATA */
 //  var fs = require("fs");
 // var data = fs.readFileSync("MOCK_NGO.json", "utf-8");

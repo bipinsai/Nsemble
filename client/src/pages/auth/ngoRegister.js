@@ -76,7 +76,7 @@ class ngoRegister extends React.Component {
                         required
                         autofocus
                       />
-                      <label for="username">Username</label>
+                      <label for="username">Name</label>
                     </div>
 
                     <div className="form-label-group">

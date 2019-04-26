@@ -11,8 +11,28 @@ class UserProfile extends React.Component {
     this.state = {
       username: "",
       donation:[],
-      logo:""
+      logo:"",
+      isNsembler: false,
     };
+  }
+
+  isNsembler = e =>{
+    if(this.state.isNsembler){
+      return(
+        <div className="container" style={{marginTop:"2%",textAlign:"center"}}>
+          <h4 style={{color:"green"}}>You are an Nsembler :)</h4>
+        </div>
+      )
+    }
+    else{
+      return(
+        <div className="profile-userbuttons" style={{marginTop:'5%'}}>
+          <button type="button" className="btn btn-success btn-sm" onClick = {this.onClick}style={{fontSize:'14px'}}>
+             Become Nsembler
+          </button>
+        </div>
+      )
+    }
   }
 
   DonationList = (e) =>
@@ -29,7 +49,7 @@ class UserProfile extends React.Component {
       return (
       this.state.donation.map((donation,index)=>{
         return(
-          <div className="cities" id="don">
+          <div className="cities" id="don" style={{background:'white',border:'1px solid grey',borderRadius:"1%"}}>
               <h4> Donation {index+1}:</h4>
                 <b><h6>{donation.itemType.toUpperCase()}</h6></b>
                 <h6>{donation.otherItems}</h6>
@@ -54,13 +74,19 @@ class UserProfile extends React.Component {
         this.setState({username : res.data.name});
         this.setState({donation : res.data.donation});
         this.setState({logo: res.data.logo});
+        this.setState({isNsembler: res.data.isNsembler});
       })
       .catch(err=>{
         console.log(err.response.status);
         if(err.response.status === 401)this.props.history.push("/user/login");
       })
   }
-
+  onClick = e =>{
+    axios.post("http://172.16.48.86:5000/user/profile")
+          .then((res)=>{
+            window.location.reload();
+          })
+  }
   render() {
     return (
       <div>
@@ -86,6 +112,7 @@ class UserProfile extends React.Component {
                     </button>
                   </Link>
                 </div>
+                <this.isNsembler />
                 <div className="profile-usermenu">
                   <ul className="nav">
                     <li className="active">
