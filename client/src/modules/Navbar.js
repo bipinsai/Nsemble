@@ -50,7 +50,7 @@ function Navbar() {
                 </div>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/register">
+                <a className="nav-link" href="/user/register">
                   Register as a User
                 </a>
               </li>
