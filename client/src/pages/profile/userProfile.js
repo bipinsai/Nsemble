@@ -128,6 +128,15 @@ class UserProfile extends React.Component {
                     >
                       Donate
                     </button>
+                  </Link><br /><br />
+                  <Link to="/user/welcome">
+                    <button
+                      type="button"
+                      className="btn btn-success btn-sm"
+                      style={{ fontSize: "14px"}}
+                    >
+                      View NGO's
+                    </button>
                   </Link>
                 </div>
                 <this.isNsembler />

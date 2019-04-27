@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/nsemble");
+mongoose.connect("mongodb+srv://Atharva:3atharva@nsemble-hna11.mongodb.net/test?retryWrites=true");
 
 //Require self made modules
 const keys = require("../config/keys.js");

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/nsemble");
+mongoose.connect("mongodb+srv://Atharva:3atharva@nsemble-hna11.mongodb.net/test?retryWrites=true");
 
 //Require self made modules
 const User = require("../models/User.js");
