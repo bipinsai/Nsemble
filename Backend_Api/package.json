@@ -8,7 +8,8 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix ../client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION = false npm i --prefix ../client && npm run build --prefix ../client"
   },
   "author": "Atharva Sune",
   "license": "MIT",
@@ -23,8 +24,7 @@
     "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.15",
     "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0",
-    "rebass": "^3.0.1"
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {}
 }
