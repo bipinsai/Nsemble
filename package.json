@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Our App",
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "npm run server",
     "server": "npm start --prefix ./Backend_Api",
     "client": "npm start --prefix ./client",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm --prefix ./Backend_Api i && npm --prefix ./client i && npm run build --prefix ./client"
