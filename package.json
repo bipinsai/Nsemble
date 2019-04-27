@@ -1,0 +1,12 @@
+{
+  "name": "nsemble",
+  "version": "1.0.0",
+  "description": "Our App",
+  "scripts": {
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION = false npm --prefix ./Backend_Api i && npm --prefix ./client i && npm run build --prefix ../client"
+  },
+  "author": "Atharva Sune",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
