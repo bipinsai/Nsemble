@@ -1,15 +1,30 @@
 {
-  "name": "nsemble",
+  "name": "backend_api",
   "version": "1.0.0",
-  "description": "Our App",
+  "description": "Backend Api to connect with front end React App",
+  "main": "server.js",
   "scripts": {
-    "start": "npm run server",
-    "server": "npm start --prefix Backend_Api",
-    "client": "npm start --prefix ./client",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm --prefix ./Backend_Api i && npm --prefix ./client i && npm run build --prefix ./client"
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i && npm i --prefix client && npm run build --prefix client"
   },
   "author": "Atharva Sune",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^8.3.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.0",
+    "mongoose": "^5.4.15",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  },
   "devDependencies": {}
 }
