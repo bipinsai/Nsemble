@@ -10,54 +10,66 @@ class UserProfile extends React.Component {
 
     this.state = {
       username: "",
-      donation:[],
-      logo:"",
-      isNsembler: false,
+      donation: [],
+      logo: "",
+      isNsembler: false
     };
   }
 
-  isNsembler = e =>{
-    if(this.state.isNsembler){
-      return(
-        <div className="container" style={{marginTop:"2%",textAlign:"center"}}>
-          <h4 style={{color:"green"}}>You are an Nsembler :)</h4>
+  isNsembler = e => {
+    if (this.state.isNsembler) {
+      return (
+        <div
+          className="container"
+          style={{ marginTop: "2%", textAlign: "center" }}
+        >
+          <h4 style={{ color: "green" }}>You are an Nsembler :)</h4>
         </div>
-      )
-    }
-    else{
-      return(
-        <div className="profile-userbuttons" style={{marginTop:'5%'}}>
-          <button type="button" className="btn btn-success btn-sm" onClick = {this.onClick}style={{fontSize:'14px'}}>
-             Become Nsembler
+      );
+    } else {
+      return (
+        <div className="profile-userbuttons" style={{ marginTop: "5%" }}>
+          <button
+            type="button"
+            className="btn btn-success btn-sm"
+            onClick={this.onClick}
+            style={{ fontSize: "14px" }}
+          >
+            Become Nsembler
           </button>
         </div>
-      )
+      );
     }
-  }
+  };
 
-  DonationList = (e) =>
-  {
-    if (this.state.donation.length === 0)
-    {
+  DonationList = e => {
+    if (this.state.donation.length === 0) {
       return (
         <div className="container" style={{ margin: "auto" }}>
           <h2 style={{ color: "red" }}>No donations yet!</h2>
         </div>
       );
-    }
-    else {
-      return (
-      this.state.donation.map((donation,index)=>{
-        return(
-          <div className="cities" id="don" style={{background:'white',border:'1px solid grey',borderRadius:"1%"}}>
-              <h4> Donation {index+1}:</h4>
-                <b><h6>{donation.itemType.toUpperCase()}</h6></b>
-                <h6>{donation.otherItems}</h6>
-                <h6>Condition : {donation.condition}</h6>
-            </div>
-          )
-        })
-      );
+    } else {
+      return this.state.donation.map((donation, index) => {
+        return (
+          <div
+            className="cities"
+            id="don"
+            style={{
+              background: "white",
+              border: "1px solid grey",
+              borderRadius: "1%"
+            }}
+          >
+            <h4> Donation {index + 1}:</h4>
+            <b>
+              <h6>{donation.itemType.toUpperCase()}</h6>
+            </b>
+            <h6>{donation.otherItems}</h6>
+            <h6>Condition : {donation.condition}</h6>
+          </div>
+        );
+      });
     }
   };
   componentDidMount() {
@@ -69,27 +81,26 @@ class UserProfile extends React.Component {
 
     /** Perform a get request to get the required data */
     axios
-      .get("http://localhost:5000/user/profile")
+      .get("/user/profile")
       .then(res => {
         console.log(res.data);
-        this.setState({username : res.data.name});
-        this.setState({donation : res.data.donation});
-        this.setState({logo: res.data.logo});
-        this.setState({isNsembler: res.data.isNsembler});
+        this.setState({ username: res.data.name });
+        this.setState({ donation: res.data.donation });
+        this.setState({ logo: res.data.logo });
+        this.setState({ isNsembler: res.data.isNsembler });
       })
       .catch(err => {
         console.log(err.response.status);
         if (err.response.status === 401) this.props.history.push("/user/login");
       });
   }
-  onClick = e =>{
-    axios.post("http://172.16.48.86:5000/user/profile")
-          .then((res)=>{
-            console.log(res);
-            this.setState({isNsembler: res.data.isNsembler});
-            window.location.reload();
-          })
-  }
+  onClick = e => {
+    axios.post("/user/profile").then(res => {
+      console.log(res);
+      this.setState({ isNsembler: res.data.isNsembler });
+      window.location.reload();
+    });
+  };
   render() {
     return (
       <div>
@@ -128,12 +139,14 @@ class UserProfile extends React.Component {
                     >
                       Donate
                     </button>
-                  </Link><br /><br />
+                  </Link>
+                  <br />
+                  <br />
                   <Link to="/user/welcome">
                     <button
                       type="button"
                       className="btn btn-success btn-sm"
-                      style={{ fontSize: "14px"}}
+                      style={{ fontSize: "14px" }}
                     >
                       View NGO's
                     </button>
